@@ -11,7 +11,7 @@ import ProductDetails from "./productDetails";
 
 import { Link, useParams, useNavigate } from 'react-router-dom';
 
-export default function Dashboard (){
+export default function ProductsByUser (){
 
     const [productsData, setProductsData] = useState();
 
@@ -23,34 +23,32 @@ export default function Dashboard (){
         navigate(-1);   
     }
 
-    // const retrieveUserProducts = async () => {
-    //     try{
-    //         let response = await APIHandler.get(`/products/user/${userId}`);
-    //         console.log('retrieving products by user', response.data);
-    //         return response.data.products;
-    //     } catch(error) {
-    //         console.error("fail to retrieve user products", error)
-    //     }
-    // }
+    const retrieveUserProducts = async () => {
+        try{
+            let response = await APIHandler.get(`/products/user/${userId}`);
+            console.log('retrieving products by user', response.data);
+            return response.data.products;
+        } catch(error) {
+            console.error("fail to retrieve user products", error)
+        }
+    }
     
-    // useEffect(() => {
-    //     console.log('useEffect hit');
-    //     retrieveUserProducts().then((data)=>{
-    //         console.log('Received data from promise', data);
-    //         setProductsData(data);
-    //     }).then(console.log('This is products Data structure', productsData))
-    // },[])
+    useEffect(() => {
+        console.log('useEffect hit');
+        retrieveUserProducts().then((data)=>{
+            console.log('Received data from promise', data);
+            setProductsData(data);
+        }).then(console.log('This is products Data structure', productsData))
+    },[])
 
     return (
         <>
-        {/* { productsData? ( */}
-        {/* <body> */}
+        { productsData? (
+        <body>
             <Button variant="secondary" className="ms-3 mt-2 mb-3" onClick={handleGoBack}> Back </Button>
 
-            {/* <h4 className="ms-3">Welcome: {productsData[0].user.name}</h4> */}
-
-            <h4 className="ms-3">List of Works</h4>           
-            {/* <Container fluid>
+            <h4 className="ms-3">Works by user: {productsData[0].user.name}</h4>
+            <Container fluid>
                 <Row xs={1} s={2} md={2} lg={3} xl={4} xxl={5} style={{justifyContent:'space-evenly'}}>
                     {productsData.map(product =>  
                         <Col style={{marginLeft:'0px'}}>
@@ -63,7 +61,6 @@ export default function Dashboard (){
                                 </Card.Text>
                                     <Link to={`/products/${product.id}`} element={<ProductDetails />}>
                                         <Button variant="dark"> See Details </Button>
-                                        <Button variant="dark"> Update </Button>
                                     </Link>
                             </Card.Body>
                             </Card>             
@@ -76,7 +73,7 @@ export default function Dashboard (){
         ) : (
             <div> Loading... </div>
         )
-        } */}
+        }
         </>
     )
 }
