@@ -66,7 +66,7 @@ export default function ProductDetails () {
                         <span style={{fontWeight:'600'}}>Content Id: </span> {singleProductData.id} 
                     </Card.Text>
                     <Card.Text> 
-                        <span style={{fontWeight:'600'}}>Provided By: </span> <Link to={`/products/user/${singleProductData.user.id}`} element={<ProductsByUser />}> {singleProductData.user.name} </Link> 
+                        <span style={{fontWeight:'600'}}>Provided By: </span> <Link to={`/products/user/${singleProductData.user.id}`} > {singleProductData.user.name} </Link> 
                     </Card.Text>
                     <Card.Text>
                         <h6> Description: </h6>

@@ -6,7 +6,7 @@ import Row from 'react-bootstrap/esm/Row';
 import Col from 'react-bootstrap/esm/Col';
 
 import { UserContext } from '../context/user-context';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import APIHandler, { setAuthHeader } from '../api/apiHandler';
 
@@ -19,6 +19,7 @@ export default function UserLogin (){
     // state
     const [emailAddress, setEmailAddress] = useState('');
     const [password, setPassword] = useState('');
+
     const [errorNotification, setErrorNotification] = useState('');
 
     // navigate
@@ -39,7 +40,25 @@ export default function UserLogin (){
         setPassword(event.target.value);
     }
 
-    const handleLogin = async (emailAddress, password) => {
+    const navigateToDashBoard = (userId) => {
+        navigate(`/users/dashboard/${userId}`)
+    }
+
+    // csrf
+    // const fetchToken = async () => {
+    //     const response = await APIHandler.get('/get-csrf')
+    //     setCSRF(response.data.csrf)
+    // }
+
+    // const csrfToken = localStorage.getItem('csrfToken');
+    
+    // useEffect(() => {
+    //     fetchToken()
+    // },[])
+
+    const handleSubmit = async (event) => {
+
+        event.preventDefault();
 
         const emailRegexPattern = /^[a-zA-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
         const passwordRegexPattern = /^[a-zA-Z0-9._%+\-!@#$&*()]*$/i;
@@ -63,32 +82,40 @@ export default function UserLogin (){
 
             console.log('Login response incoming')
 
+
+            // console.log(csrfToken)
+
             try {
-                let loginResponse = await APIHandler.post('/users/try/login', {
-                        "email": emailAddress,
-                        "password": password
-                    })
+                console.log('try route hit in login handle submit')
 
-                    let accessToken = await loginResponse.data.accessToken
-                    let refreshToken = await loginResponse.data.refreshToken
-                    
-                    console.log('access token', accessToken)
-                    console.log('refresh token', refreshToken)
-    
-                    setUserId(await loginResponse.data.id)
-                    setUserName(await loginResponse.data.id)
-                    
-                    console.log('user id =>', userId)
-                    
-                    setAuthHeader(accessToken, refreshToken)
-    
+                let loginResponse = await APIHandler.post('/users/login', {
+                    "email": emailAddress,
+                    "password": password,
+                })
 
+                let accessToken = await loginResponse.data.accessToken
+                let refreshToken = await loginResponse.data.refreshToken
+                
+                console.log('access token react =>', accessToken)
+                console.log('refresh token react =>', refreshToken)
+
+                setUserId(await loginResponse.data.userId)
+                setUserName(await loginResponse.data.userName)
+                
+                console.log('react user id =>', userId)
+                console.log('react user name =>', userName)
+
+                setAuthHeader(accessToken, refreshToken)
+
+                if (userId){
+                    navigateToDashBoard(userId);
+                }
             } catch (error) {
-                console.log('fail to fetch data', error)
+                console.log('Invalid login', error)
+                setErrorNotification('Invalid Log in')
             }
         }
     }
-
 
     return (
         <>
@@ -96,34 +123,36 @@ export default function UserLogin (){
                 <Row xs={1} s={1} md={2} lg={2} xl={2} xxl={2} style={{maxHeight:'100%'}}>
                     <Col>
                         <Button variant="secondary" className="ms-4 mt-2 mb-3" onClick={handleGoBack}> Back </Button>
-                        <Form>
-                        <Form.Group className="ms-4 mb-3" controlId="formBasicEmail" style={{maxWidth: '350px', minWidth:'350px'}}>
-                            <Form.Label>Email address</Form.Label>
-                            <Form.Control   type="email" 
-                                            placeholder="Enter email"
-                                            name="emailAddress"
-                                            value={emailAddress}
-                                            onChange={(event) => handleLoginEmail(event)}
-                            />
-                        </Form.Group>                    
-                        <Form.Group className="ms-4 mb-3" controlId="formBasicPassword" style={{maxWidth: '350px', minWidth:'300px'}}>
-                            <Form.Label>Password</Form.Label>
-                            <Form.Control   type="password"
-                                            name="password"
-                                            placeholder="Password" 
-                                            value={password}
-                                            onChange={(event) => handlePassword(event)}
-                            />
-                        </Form.Group>
-                            <Form.Group className="ms-4 mb-3" controlId="formBasicCheckbox">
+                        <Form onSubmit={handleSubmit}>
+                            <Form.Group className="ms-4 mb-3" controlId="formBasicEmail" style={{maxWidth: '350px', minWidth:'350px'}}>
+                                <Form.Label>Email address</Form.Label>
+                                <Form.Control   type="email" 
+                                                placeholder="Enter email"
+                                                name="email"
+                                                value={emailAddress}
+                                                onChange={(event) => handleLoginEmail(event)}
+                                />
+                            </Form.Group>                    
+                            <Form.Group className="ms-4 mb-3" controlId="formBasicPassword" style={{maxWidth: '350px', minWidth:'300px'}}>
+                                <Form.Label>Password</Form.Label>
+                                <Form.Control   type="password"
+                                                name="password"
+                                                placeholder="Password" 
+                                                value={password}
+                                                onChange={(event) => handlePassword(event)}
+                                />
+                            </Form.Group>
+                            <Form.Group className="ms-4 mb-3">
                                 <Form.Text className="text-muted">
-                                    First time here? <a href="/user/register"> Register </a>
+                                    First time here? <Link to={"/users/register"}> Register </Link>
                                 </Form.Text>
                             </Form.Group>
-                            <Button variant="secondary" className="ms-4" onClick={()=>handleLogin(emailAddress, password)}>
+                            
+                            {/* <input type="hidden" name="_csrf" value={csrfToken} /> */}
+                            <Button variant="secondary" className="ms-4" type="submit">
                                 Submit
                             </Button>
-                            <Form.Text className="text-muted">
+                            <Form.Text className="text-muted mt-3 ms-4">
                                 {errorNotification}
                             </Form.Text>
                         </Form>
@@ -131,7 +160,8 @@ export default function UserLogin (){
                     <Col>
                         <img    src="/login-page-welcome.jpg" 
                                 style={{maxHeight: '100%', maxWidth:'100%', objectFit:'fill'}}
-                                className="d-none d-md-block"        
+                                className="d-none d-md-block"
+                                alt="welcome"
                         />
                     </Col>
                 </Row>

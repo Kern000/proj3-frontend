@@ -29,7 +29,7 @@ export default function NavBar(){
                     </Offcanvas.Header>
                     <Offcanvas.Body>
                     <Nav className="justify-content-end flex-grow-1 pe-2 mb-3">
-                        <Nav.Link href="/user/login" className="mt-2">Dashboard</Nav.Link>
+                        <Nav.Link href="/users/login" className="mt-2">Dashboard</Nav.Link>
                         <Nav.Link href="#action2" className="mt-2">Start Listing</Nav.Link>
                         <NavDropdown
                         title="Saved Works"

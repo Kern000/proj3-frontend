@@ -15,6 +15,7 @@ import ProductListing from './pages/productListing';
 import ProductDetails from './pages/productDetails';
 import ProductsByUser from './pages/productsByUser';
 import UserLogin from './pages/userLogin';
+import Register from './pages/register';
 import Dashboard from './pages/dashboard';
 
 // Components
@@ -31,6 +32,7 @@ function App() {
               <Route path="/products/:productId" element={<ProductDetails />} />
               <Route path="/products/user/:userId" element={<ProductsByUser />} />
               <Route path="/users/login" element={<UserLogin />} />
+              <Route path="/users/register" element={<Register />} />
               <Route path="/users/dashboard/:userId" element={<Dashboard />} />
             </Routes>
         </CartContextData>
