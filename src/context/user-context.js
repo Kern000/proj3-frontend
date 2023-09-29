@@ -6,7 +6,8 @@ const UserContextData = ({children}) => {
 
     const [userName, setUserName] = useState('');
     const [userId, setUserId] = useState('');
-    const [accessToken, setAccessToken] = useState(''); 
+    const [accessToken, setAccessToken] = useState('');
+    const [loginState, setLoginState] = useState(false);
 
     useEffect(()=> {
         const retrieveData = async() => {
@@ -25,7 +26,7 @@ const UserContextData = ({children}) => {
     }, [])
 
     return(
-        <UserContext.Provider value={{userName, setUserName, userId, setUserId, accessToken, setAccessToken}}>
+        <UserContext.Provider value={{userName, setUserName, userId, setUserId, accessToken, setAccessToken, loginState, setLoginState}}>
             {children}
         </UserContext.Provider>
     )

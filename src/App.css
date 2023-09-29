@@ -1,5 +1,8 @@
-
 .product-details .card-title,
 .product-details .card-text {
   margin-bottom: 20px;
+}
+
+.navbar-brand:hover {
+  cursor: pointer;
 }

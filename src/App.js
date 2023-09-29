@@ -20,8 +20,11 @@ import Dashboard from './pages/dashboard';
 
 // Components
 import NavBar from './components/navbar';
+import Footer from './components/footer';
+
 
 function App() {
+
   return (
     <>
       <UserContextData>
@@ -35,6 +38,7 @@ function App() {
               <Route path="/users/register" element={<Register />} />
               <Route path="/users/dashboard/:userId" element={<Dashboard />} />
             </Routes>
+          <Footer />
         </CartContextData>
       </UserContextData>
     </>

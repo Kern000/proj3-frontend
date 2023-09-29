@@ -1,4 +1,7 @@
-import React from 'react';
+import React, {useContext} from 'react';
+import { useNavigate } from 'react-router-dom';
+
+import { UserContext } from '../context/user-context'
 
 import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
@@ -9,12 +12,30 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 import Offcanvas from 'react-bootstrap/Offcanvas';
 
 export default function NavBar(){
+
+    const {loginState} = useContext(UserContext);
+    const {userId} = useContext(UserContext)
+
+    let navigate = useNavigate();
+
+    const handleLogin = () => {
+        if (loginState){
+            navigate(`/users/dashboard/${userId}`)            
+        } else {
+            navigate('/users/login')
+        }
+    }
+
+    const handleHome = () => {
+        navigate('/')
+    }
+
     return (
         <nav>
             {['sm'].map((expand) => (
             <Navbar bg="dark" data-bs-theme="dark" key={expand} expand={expand} className="bg-body-tertiary mb-3">
                 <Container fluid>
-                <Navbar.Brand href="/">The Writers' Base</Navbar.Brand>
+                <Navbar.Brand onClick={handleHome}>The Writers' Base</Navbar.Brand>
                 <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${expand}`} />
 
                 <Navbar.Offcanvas
@@ -29,16 +50,16 @@ export default function NavBar(){
                     </Offcanvas.Header>
                     <Offcanvas.Body>
                     <Nav className="justify-content-end flex-grow-1 pe-2 mb-3">
-                        <Nav.Link href="/users/login" className="mt-2">Dashboard</Nav.Link>
-                        <Nav.Link href="#action2" className="mt-2">Start Listing</Nav.Link>
+                        <Nav.Link onClick={handleLogin} className="mt-2">Dashboard</Nav.Link>
+                        <Nav.Link onClick={handleLogin} className="mt-2">Start Listing</Nav.Link>
                         <NavDropdown
                         title="Saved Works"
                         id={`offcanvasNavbarDropdown-expand-${expand}`}
                         className="mt-2 me-4"
                         >
-                        <NavDropdown.Item href="#action3">Favorites</NavDropdown.Item>
+                        <NavDropdown.Item onClick={handleLogin}>Favorites (coming soon)</NavDropdown.Item>
                         <NavDropdown.Divider />
-                        <NavDropdown.Item href="#action4">View Cart</NavDropdown.Item>
+                        <NavDropdown.Item onClick={handleLogin}>Saved User (coming soon)</NavDropdown.Item>
                         </NavDropdown>
                     </Nav>
                     <Form className="d-flex">

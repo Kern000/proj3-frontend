@@ -15,6 +15,7 @@ export default function UserLogin (){
     // context
     const {userName, setUserName} = useContext(UserContext);
     const {userId, setUserId} = useContext(UserContext);
+    const {loginState, setLoginState} = useContext(UserContext);
 
     // state
     const [emailAddress, setEmailAddress] = useState('');
@@ -96,19 +97,20 @@ export default function UserLogin (){
                 let accessToken = await loginResponse.data.accessToken
                 let refreshToken = await loginResponse.data.refreshToken
                 
+                let ID = await loginResponse.data.userId
+                let Username = await loginResponse.data.userName
+
                 console.log('access token react =>', accessToken)
                 console.log('refresh token react =>', refreshToken)
 
-                setUserId(await loginResponse.data.userId)
-                setUserName(await loginResponse.data.userName)
-                
-                console.log('react user id =>', userId)
-                console.log('react user name =>', userName)
-
                 setAuthHeader(accessToken, refreshToken)
+                setLoginState(true);
 
-                if (userId){
-                    navigateToDashBoard(userId);
+                await setUserId(ID)
+                await setUserName(Username)
+
+                if (ID){        
+                    navigateToDashBoard(ID);
                 }
             } catch (error) {
                 console.log('Invalid login', error)

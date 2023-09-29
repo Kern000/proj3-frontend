@@ -4,16 +4,13 @@ export const CartContext = createContext();
 
 const CartContextData = ({children}) => {
 
-    const [productsInCart, setProductsInCart] = useState('')
+    const [productsInCart, setProductsInCart] = useState()
 
     const contextValue = useMemo(()=>{
         return({
             productsInCart, setProductsInCart
         })
-    },  [
-            productsInCart, setProductsInCart
-        ]
-    )
+    },  [productsInCart, setProductsInCart])
 
     return (
         <CartContext.Provider value={contextValue}>
