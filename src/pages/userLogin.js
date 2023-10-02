@@ -13,9 +13,9 @@ import APIHandler, { setAuthHeader } from '../api/apiHandler';
 export default function UserLogin (){
 
     // context
-    const {userName, setUserName} = useContext(UserContext);
-    const {userId, setUserId} = useContext(UserContext);
-    const {loginState, setLoginState} = useContext(UserContext);
+    const {setUserName} = useContext(UserContext);
+    const {setUserId} = useContext(UserContext);
+    const {setLoginState} = useContext(UserContext);
 
     // state
     const [emailAddress, setEmailAddress] = useState('');
@@ -82,9 +82,6 @@ export default function UserLogin (){
         else {
 
             console.log('Login response incoming')
-
-
-            // console.log(csrfToken)
 
             try {
                 console.log('try route hit in login handle submit')

@@ -6,8 +6,9 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
-import Nav from 'react-bootstrap/Nav';
-import Form from 'react-bootstrap/Form'
+
+import AddProductForm from "../components/add-product";
+import UpdateProductForm from "../components/update-product";
 
 import { Link, useNavigate } from 'react-router-dom';
 import { UserContext } from "../context/user-context";
@@ -18,8 +19,17 @@ export default function Dashboard (){
 
     const [productsData, setProductsData] = useState();
     const [errorNotification, setErrorNotification] = useState();
+    const [showItem, setShowItem] = useState();
 
     let navigate = useNavigate();
+
+    const handleToggleButton = (event) => {
+        if (showItem === event.target.value) {
+            setShowItem('')
+        } else {
+            setShowItem(event.target.value)
+        }
+    }
 
     function handleGoBack(){
         navigate(-1);   
@@ -48,21 +58,6 @@ export default function Dashboard (){
         }
     },
     [userId, userName])
-
-    // const [name, setName] = useState();
-    // const [price, setPrice] = useState();
-    // const [description, setDescription] = useState();
-    // const [image_url
-    // image_url
-    // thumbnail_url
-    // stock
-    // chapter_content
-    // post category 1:free 2:webnovel 3:published 4:manuscript
-
-    // genre 1: fantasy 2: drama 3:romance 4:comedy 5:animal
-    // 6: selfhelp 7: business 8:biography 9:art 10:coding
-
-    // add product only hv x routes , genres need update the pivot table
 
 
     return (
@@ -117,75 +112,62 @@ export default function Dashboard (){
                             <span className="ms-4" style={{color:'black', fontWeight:'600', fontSize:'20px'}}>Tools</span>
                         </Col>
                         <Col style={{justifyContent:'flex-start'}}>
-                            <Button className="ms-3 mt-1 btn-sm" variant="light" style={{border:'1px solid black'}}> List a Work </Button>
-                            <Button className="ms-3 mt-1 btn-sm" variant="light" style={{border:'1px solid black'}}> Update Work </Button>                   
-                            <Button className="ms-3 mt-1 btn-sm" variant="light" style={{border:'1px solid black'}}> View Cart </Button>                   
-                            <Button className="ms-3 mt-1 btn-sm" variant="light" style={{border:'1px solid black'}}> View Orders </Button>                   
+                            <Button className="ms-3 mt-1 btn-sm" 
+                                    variant="light" 
+                                    style={{border:'1px solid black'}}
+                                    value="addProduct"
+                                    onClick={(event)=>handleToggleButton(event)}
+                            > List a Work </Button>
+
+                            <Button className="ms-3 mt-1 btn-sm" 
+                                    variant="light" 
+                                    style={{border:'1px solid black'}}
+                                    value="viewCart"
+                                    onClick={(event)=>handleToggleButton(event)}
+                            > View Cart </Button>                   
+                            
+                            <Button className="ms-3 mt-1 btn-sm" 
+                                    variant="light" 
+                                    style={{border:'1px solid black'}}
+                                    value="viewOrders"
+                                    onClick={(event)=>handleToggleButton(event)}
+                            > View Orders </Button>                   
                         </Col>
                     </Row>
                 </Container>
-                {/* <Container>
-                    <Form onSubmit={handleSubmit}>
-                        <Form.Group className="ms-4 mb-3" style={{maxWidth: '350px', minWidth:'350px', maxHeight:'60px'}}>
-                            <Form.Label style={{fontSize:"12px"}}>User Name</Form.Label>
-                            <Form.Control   type="text" 
-                                            placeholder="Enter username"
-                                            name="name"
-                                            value={userName}
-                                            onChange={(event) => handleRegisterUserName(event)}
-                            />
-                        </Form.Group>
-                        <Form.Group className="ms-4 mb-3" controlId="formBasicEmail" style={{maxWidth: '350px', minWidth:'350px', maxHeight:'60px'}}>
-                            <Form.Label style={{fontSize:"12px"}}>Email address</Form.Label>
-                            <Form.Control   type="email" 
-                                            placeholder="Enter email"
-                                            name="email"
-                                            value={emailAddress}
-                                            onChange={(event) => handleRegisterEmail(event)}
-                            />
-                        </Form.Group>                    
-                        <Form.Group className="ms-4 mb-3" controlId="formBasicPassword" style={{maxWidth: '350px', minWidth:'300px', maxHeight:'60px'}}>
-                            <Form.Label style={{fontSize:"12px"}}>Password</Form.Label>
-                            <Form.Control   type="password"
-                                            name="password"
-                                            placeholder="Password" 
-                                            value={password}
-                                            onChange={(event) => handleRegisterPassword(event)}
-                            />
-                        </Form.Group>
-                        <Form.Group className="ms-4 mb-3" controlId="formBasicPassword" style={{maxWidth: '350px', minWidth:'300px', maxHeight:'60px'}}>
-                            <Form.Label style={{fontSize:"12px"}}>Confirm Password</Form.Label>
-                            <Form.Control   type="password"
-                                            name="password"
-                                            placeholder="Confirm Password" 
-                                            value={confirmPassword}
-                                            onChange={(event) => handleRegisterConfirmPassword(event)}
-                            />
-                        </Form.Group>
-                        <Form.Group className="ms-4 mb-3" style={{maxWidth: '350px', minWidth:'350px', maxHeight:'60px'}}>
-                            <Form.Label style={{fontSize:"12px"}}>What is the name of your first school?</Form.Label>
-                            <Form.Control   type="text"
-                                            placeholder="Enter secret"
-                                            name="secret"
-                                            value={secret}
-                                            onChange={(event) => handleRegisterSecret(event)}
-                            />
-                        </Form.Group>
-                        <Form.Group className="ms-4 mb-3">
-                            <Form.Text className="text-muted" style={{fontSize:"12px"}}>
-                                Existing user? <Link to="/users/login"> Login </Link>
-                            </Form.Text>
-                        </Form.Group>
-                        
-                        {/* <input type="hidden" name="_csrf" value={csrfToken} /> */}
-                        {/* <Button variant="secondary" className="ms-4" type="submit">
-                            Submit
-                        </Button>
-                        <Form.Text className="text-muted mt-3 ms-4">
-                            {errorNotification}
-                        </Form.Text>
-                    </Form>
-                </Container> */}
+                {
+                    showItem == "addProduct"?
+                    (
+                        <Container fluid className="ms-3">
+                            <AddProductForm />
+                        </Container>
+                    ): (
+                        <Container fluid className="ms-3">
+                        </Container>
+                    )
+                }
+                {
+                    showItem == "viewCart"?
+                    (
+                        <Container fluid className="ms-3">
+                            <AddProductForm />
+                        </Container>
+                    ): (
+                        <Container fluid className="ms-3">
+                        </Container>
+                    )
+                }
+                {
+                    showItem == "viewOrders"?
+                    (   
+                        <Container fluid className="ms-3">
+                            <AddProductForm />
+                        </Container>
+                    ): (
+                        <Container fluid className="ms-3">
+                        </Container>
+                    )
+                }
         </>
     )
 }

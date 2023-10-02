@@ -1,8 +1,6 @@
 import React from "react";
 import Navbar from 'react-bootstrap/Navbar';
 import Container from "react-bootstrap/esm/Container";
-import Row from "react-bootstrap/esm/Row";
-import Col from "react-bootstrap/esm/Col";
 import Nav from "react-bootstrap/Nav";
 
 export default function Footer() {
@@ -18,9 +16,9 @@ export default function Footer() {
                         <Nav.Link className="ml-auto d-none d-sm-flex" style={{color:'white', fontSize:'14px'}}>Careers</Nav.Link>
                         <Nav.Link className="ml-auto d-none d-sm-flex" style={{color:'white', fontSize:'14px'}}>Blog</Nav.Link>
                         <Nav.Link className="ml-auto d-none d-sm-flex" style={{color:'white', fontSize:'14px'}}>Connect</Nav.Link>
-                        <Nav.Link > <img src="/fb.jpg" style={{objectFit:'scaledown', height:'20px', marginBottom:'2px'}}/></Nav.Link>
-                        <Nav.Link > <img src="/insta.jpg" style={{objectFit:'fill', height:'20px', maxWidth:'20px', marginBottom:'2px'}}/></Nav.Link>
-                        <Nav.Link > <img src="/twitterx.png" style={{objectFit:'fill', height:'20px', maxWidth:'20px', marginBottom:'2px'}}/></Nav.Link>
+                        <Nav.Link > <img src="/fb.jpg" alt="fb" style={{objectFit:'scaledown', height:'20px', marginBottom:'2px'}}/></Nav.Link>
+                        <Nav.Link > <img src="/insta.jpg" alt="insta" style={{objectFit:'fill', height:'20px', maxWidth:'20px', marginBottom:'2px'}}/></Nav.Link>
+                        <Nav.Link > <img src="/twitterx.png" alt="twitter" style={{objectFit:'fill', height:'20px', maxWidth:'20px', marginBottom:'2px'}}/></Nav.Link>
                     </Nav>
                 </Container>
             </Navbar>

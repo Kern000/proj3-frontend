@@ -107,7 +107,7 @@ export default function Register (){
             try {
                 console.log('route hit in Register handle submit')
 
-                let registerResponse = await APIHandler.post('/users/register', {
+                await APIHandler.post('/users/register', {
                     "name": userName,
                     "email": emailAddress,
                     "password": password,

@@ -1,5 +1,4 @@
-import React, {useEffect, useState} from "react";
-import APIHandler from "../api/apiHandler";
+import React, {useState, useContext, useEffect} from "react";
 
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
@@ -12,28 +11,30 @@ import Offcanvas from 'react-bootstrap/Offcanvas';
 import ProductDetails from "./productDetails";
 import SearchForm from "./search-engine";
 
+import { SearchContext } from "../context/search-context";
+
 import { Link } from 'react-router-dom';
 
-export default function ProductListing (){
+export default function SearchResults (){
 
-    const [productsData, setProductsData] = useState();
     const [showSearchForm, setShowSearchForm] = useState(false);
+    const [errorNotification, setErrorNotification] = useState();
     
-    const retrieveAllProducts = async () => {
-        let response = await APIHandler.get('/products');
-        console.log('retrieving products', response.data);
-        return response.data.products;
-    }
-    
-    useEffect(() => {
-        retrieveAllProducts().then((data)=>{
-            console.log('Received data from promise', data);
-            setProductsData(data);
-        })
-    },[])
+    const { searchData } = useContext(SearchContext);
 
     const handleCloseSearch = () => setShowSearchForm(false);
     const handleShowSearch = () => setShowSearchForm(true);
+
+    useEffect(()=>{
+        handleCloseSearch();
+        setErrorNotification("");
+
+        setTimeout(()=> {
+            if (searchData.length === 0){
+                setErrorNotification('No item matched search criteria')   
+            }
+            },1000)
+    },[searchData])
 
     return (
         <>
@@ -53,13 +54,14 @@ export default function ProductListing (){
                     </Offcanvas>
             </div>
 
-            {productsData? (
+            {searchData? (
                 <>
-                <h4 className="ms-3">Latest Works</h4>
+                <h4 className="ms-3">Found Works</h4>
+                <p className="ms-3">{errorNotification}</p>
                     <Container fluid>
                         <Row xs={1} s={2} md={2} lg={3} xl={4} xxl={5} style={{justifyContent:'flex-start'}}>
-                            {productsData.map(product =>  
-                                <Col style={{marginLeft:'0px'}} key={product.id}>
+                            {searchData.map(product =>  
+                                <Col style={{marginLeft:'0px'}}>
                                     <Card style={{ width: '18rem', marginTop: '10px', marginBottom:'20px'}}>
                                     <Card.Img variant="top" src={product.image_url} style={{ minHeight: '220px', maxHeight:'220px'}}/>
                                     <Card.Body>
@@ -89,7 +91,7 @@ export default function ProductListing (){
                         </Row>
                     </Container>
                 </>
-            ) : (<div> Loading... </div>)
+            ) : (<div> ... loading </div>)
             }
             </body>
         </>

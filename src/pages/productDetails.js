@@ -72,6 +72,9 @@ export default function ProductDetails () {
                         <h6> Description: </h6>
                         {singleProductData.description}
                     </Card.Text>
+                    <Card.Text> 
+                        <span style={{fontWeight:'600'}}>Price: </span> {singleProductData.price} 
+                    </Card.Text>
                     <Card.Text>
                         <span style={{fontWeight:'600'}}>Date created: </span> {singleProductData.date_created.slice(0,10)} 
                     </Card.Text>
