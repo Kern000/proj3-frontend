@@ -1,18 +1,12 @@
 import axios from 'axios';
 
+export let baseURL = "https://3000-kern000-projectthreebac-em7lw5jkwpd.ws-us105.gitpod.io"
+
 const APIHandler = axios.create({
-    "baseURL": "https://3000-kern000-projectthreebac-em7lw5jkwpd.ws-us105.gitpod.io"
+    "baseURL": baseURL
 })
 
 export let headersData = {}
-
-// export const setCSRF = async (csrfToken) => {
-
-//     localStorage.setItem("csrfToken", csrfToken)
-//     headersData["X-XSRF-TOKEN"] = csrfToken
-//     APIHandler.defaults.headers['Content-Type'] = 'application/json';
-//     APIHandler.defaults.headers.common["X-XSRF-TOKEN"] = csrfToken
-// }
 
 export const setAuthHeader = async (accessToken, refreshToken) => {
 

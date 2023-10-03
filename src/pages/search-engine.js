@@ -49,7 +49,7 @@ export default function SearchForm(){
         const numberRegexPattern = /^[0-9]{0,}$/;
 
         if (name && !generalRegexPattern.test(name)){
-            setErrorNotification('invalid title characters')
+            setErrorNotification('Invalid title characters')
         }
         else if (minPrice && !numberRegexPattern.test(minPrice)){
             setErrorNotification('Invalid price number')

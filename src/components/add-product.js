@@ -3,21 +3,23 @@ import { UserContext } from '../context/user-context';
 import Form from 'react-bootstrap/Form';
 import Container from 'react-bootstrap/Container';
 import Button from 'react-bootstrap/Button';
+import { CloudinaryContext } from '../context/cloudinary-context';
+import UploadWidget from './uploadWidget';
 
 export default function AddProductForm(){
 
     const [name, setName] = useState();
     const [price, setPrice] = useState();
     const [description, setDescription] = useState();
-    const [imageUrl, setImageUrl] = useState();
-    const [thumbnailUrl, setThumbnailUrl] = useState();
+
     const [stock, setStock] = useState();
     const [chapterContent, setChapterContent] = useState();
     const [postCategoryId, setPostCategoryId] = useState();
     const [errorNotification, setErrorNotification] = useState();
     const [genreId, setGenreId] = useState([]);
-    
-    const {userId} = useContext(UserContext);
+
+    const {userId} = useContext(UserContext);   
+    const {imageUrl, setImageUrl, thumbnailUrl, setThumbnailUrl} = useContext(CloudinaryContext);
 
     const handleGenreChange = (event) => {
         const { value, checked } = event.target;
@@ -204,15 +206,17 @@ export default function AddProductForm(){
                                 checked={genreId.includes("10")}
                                 onChange={handleGenreChange}
                         />
-                    </Form.Group>                    
-                    <Button variant="secondary" className="mb-5 mt-4" type="submit">
+                    </Form.Group>
+                    <UploadWidget /> 
+                    <Button variant="secondary" className="mb-5 mt-3" type="submit">
                         Submit
                     </Button>
-                    <Form.Text className="text-muted mt-3 ms-4 mb-10">
+                    <Form.Text className="text-muted mt-2 ms-4 mb-10">
                         {errorNotification}
                     </Form.Text>
                 </Form>
             </Container>
+
         </>
     )
 }

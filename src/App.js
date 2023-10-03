@@ -5,11 +5,11 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 
-
 // Context
 import UserContextData from './context/user-context';
 import CartContextData from './context/cart-context';
 import SearchContextData from './context/search-context';
+import CloudinaryContextData from './context/cloudinary-context';
 
 // Pages
 import ProductListing from './pages/productListing';
@@ -30,21 +30,24 @@ function App() {
   return (
     <>
       <UserContextData>
-        <CartContextData>
-          <SearchContextData>
-            <NavBar />
-              <Routes>
-                <Route path="/" element={<ProductListing />} />
-                <Route path="/products/:productId" element={<ProductDetails />} />
-                <Route path="/products/user/:userId" element={<ProductsByUser />} />
-                <Route path="/users/login" element={<UserLogin />} />
-                <Route path="/users/register" element={<Register />} />
-                <Route path="/users/dashboard/:userId" element={<Dashboard />} />
-                <Route path="/search-results" element={<SearchResults />} />
-              </Routes>
-            <Footer />
-          </SearchContextData>
-        </CartContextData>
+        <CloudinaryContextData>
+          <CartContextData>
+            <SearchContextData>
+              <NavBar />
+                <Routes>
+                  <Route path="/" element={<ProductListing />} />
+                  <Route path="/products/:productId" element={<ProductDetails />} />
+                  <Route path="/products/user/:userId" element={<ProductsByUser />} />
+                  <Route path="/users/login" element={<UserLogin />} />
+                  <Route path="/users/register" element={<Register />} />
+                  <Route path="/users/dashboard/:userId" element={<Dashboard />} />
+                  <Route path="/search-results" element={<SearchResults />} />
+                  
+                </Routes>
+              <Footer />
+            </SearchContextData>
+          </CartContextData>
+        </CloudinaryContextData>
       </UserContextData>
     </>
   );

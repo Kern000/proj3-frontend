@@ -1,7 +1,9 @@
-import React, {useContext} from 'react';
+import React, {useContext, useState} from 'react';
 import { useNavigate } from 'react-router-dom';
+import APIHandler from '../api/apiHandler';
 
 import { UserContext } from '../context/user-context'
+import { SearchContext } from '../context/search-context';
 
 import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
@@ -14,23 +16,66 @@ import Offcanvas from 'react-bootstrap/Offcanvas';
 export default function NavBar(){
 
     const {loginState} = useContext(UserContext);
-    const {userId} = useContext(UserContext)
+    const {userId} = useContext(UserContext);
+    const {setSearchData} = useContext(SearchContext);
 
+    const [name, setName] = useState();
+    const [errorNotification, setErrorNotification] = useState();
+    
     let navigate = useNavigate();
 
     const handleLogin = () => {
         if (loginState){
-            navigate(`/users/dashboard/${userId}`)            
+            navigate(`/users/dashboard/${userId}`);
         } else {
-            navigate('/users/login')
+            navigate('/users/login');
         }
     }
 
+    const navigateToSearchResult = () => {
+        navigate('/search-results');
+    }
+
     const handleHome = () => {
-        navigate('/')
+        navigate('/');
+    }
+
+    const handleSearchInput = (event) => {
+        setErrorNotification('');
+        setName(event.target.value);
+    }
+
+    const handleSubmit = async (event) => {
+
+        event.preventDefault();
+
+        const generalRegexPattern = /^[a-zA-Z0-9._ %+\-!@#$&*()]*$/i;
+
+        if (name && !generalRegexPattern.test(name)){
+            setErrorNotification('Invalid title characters')
+        } else {
+
+            const payload = {
+                "name": name
+            }
+            console.log("frontend req.body here=>", payload)
+            
+            try {
+                let response = await APIHandler.post('/search', payload)
+                console.log('fetched data from search engine =>', response.data.products)
+                await setSearchData(response.data.products)
+                
+                navigateToSearchResult()
+
+            } catch(error) {
+                console.log('error fetching products', error)
+            }
+
+        }
     }
 
     return (
+        <>
         <nav>
             {['sm'].map((expand) => (
             <Navbar bg="dark" data-bs-theme="dark" key={expand} expand={expand} className="bg-body-tertiary mb-3">
@@ -62,18 +107,21 @@ export default function NavBar(){
                         <NavDropdown.Item onClick={handleLogin}>Saved User (coming soon)</NavDropdown.Item>
                         </NavDropdown>
                     </Nav>
-                    <Form className="d-flex">
+                    <Form onSubmit={handleSubmit} className="d-flex">
                         <Form.Control
                         type="search"
-                        placeholder="Search"
+                        placeholder="Search title name"
                         className="me-2 mt-2"
                         aria-label="Search"
+                        value={name}
+                        onChange={handleSearchInput}
                         style={{maxHeight:'40px'}}
                         />
                         <Button 
                         className="mt-2"
                         variant="outline-primary"
-                        style={{maxHeight:'40px'}}                      
+                        style={{maxHeight:'40px'}}
+                        type="submit"                
                         >Search</Button>
                     </Form>
                     </Offcanvas.Body>
@@ -82,5 +130,10 @@ export default function NavBar(){
             </Navbar>
             ))}
         </nav>
+        {errorNotification? 
+            (<div className="ms-3 mb-3" style={{color:'red'}}>
+                {errorNotification}
+            </div>): null}
+        </>
     )
 }
