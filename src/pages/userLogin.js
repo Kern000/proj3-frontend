@@ -45,18 +45,6 @@ export default function UserLogin (){
         navigate(`/users/dashboard/${userId}`)
     }
 
-    // csrf
-    // const fetchToken = async () => {
-    //     const response = await APIHandler.get('/get-csrf')
-    //     setCSRF(response.data.csrf)
-    // }
-
-    // const csrfToken = localStorage.getItem('csrfToken');
-    
-    // useEffect(() => {
-    //     fetchToken()
-    // },[])
-
     const handleSubmit = async (event) => {
 
         event.preventDefault();
@@ -106,7 +94,10 @@ export default function UserLogin (){
                 await setUserId(ID)
                 await setUserName(Username)
 
-                if (ID){        
+                localStorage.setItem("userId", ID)
+                localStorage.setItem("userName", Username)
+
+                if (ID){
                     navigateToDashBoard(ID);
                 }
             } catch (error) {
@@ -166,6 +157,6 @@ export default function UserLogin (){
                 </Row>
             </Container>
         </>
-        );
+    );
 }
     

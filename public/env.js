@@ -1,7 +1,7 @@
 window.env = {
   "ALLUSERSPROFILE": "C:\\ProgramData",
   "APPDATA": "C:\\Users\\user\\AppData\\Roaming",
-  "CHROME_CRASHPAD_PIPE_NAME": "\\\\.\\pipe\\crashpad_15848_CEXXSJHRXAMKPXDC",
+  "CHROME_CRASHPAD_PIPE_NAME": "\\\\.\\pipe\\crashpad_11816_XGEQPDTHVDWVYDWJ",
   "CLOUDINARY_API_KEY": "117871257461922",
   "CLOUDINARY_API_SECRET": "x3O-LJhwDIVmM1TSowMeZyY9WUc",
   "CLOUDINARY_NAME": "ddmpblr15",
@@ -70,7 +70,7 @@ window.env = {
   "SystemRoot": "C:\\WINDOWS",
   "TEMP": "C:\\Users\\user\\AppData\\Local\\Temp",
   "TERM_PROGRAM": "vscode",
-  "TERM_PROGRAM_VERSION": "1.82.2",
+  "TERM_PROGRAM_VERSION": "1.82.3",
   "TMP": "C:\\Users\\user\\AppData\\Local\\Temp",
   "USERDOMAIN": "DESKTOP-MELTL8L",
   "USERDOMAIN_ROAMINGPROFILE": "DESKTOP-MELTL8L",

@@ -1,4 +1,4 @@
-import React, {useEffect, useState, useContext} from "react";
+import React, {useEffect, useRef, useState, useContext} from "react";
 import APIHandler from "../api/apiHandler";
 
 import Container from 'react-bootstrap/Container';
@@ -12,22 +12,30 @@ import UpdateProductForm from "../components/update-product";
 
 import { Link, useNavigate } from 'react-router-dom';
 import { UserContext } from "../context/user-context";
+import { DashBoardContext } from "../context/dashboard-context";
 
 export default function Dashboard (){
 
-    const {userId, userName} = useContext(UserContext);
+    const {userId, setUserId, userName, setUserName} = useContext(UserContext);
+    const {reRender} = useContext(DashBoardContext);
 
     const [productsData, setProductsData] = useState();
     const [errorNotification, setErrorNotification] = useState();
-    const [showItem, setShowItem] = useState();
-
+    const {showItem, setShowItem} = useContext(DashBoardContext);
+    const {showProducts, setShowProducts} = useContext(DashBoardContext);
+    
     let navigate = useNavigate();
+
+    const userNameRef = useRef();
+    const userIdRef = useRef();
 
     const handleToggleButton = (event) => {
         if (showItem === event.target.value) {
             setShowItem('')
+            setShowProducts(true)
         } else {
             setShowItem(event.target.value)
+            setShowProducts(false)
         }
     }
 
@@ -50,63 +58,38 @@ export default function Dashboard (){
 
     useEffect(() => {
         console.log('useEffect hit', userId, userName);
+
+        if (localStorage.getItem("userId") && localStorage.getItem("userName")){
+            setUserId(localStorage.getItem("userId"));
+            setUserName(localStorage.getItem("userName"));
+        }
+
         if (userId && userName){
+            userNameRef.current = userName;
+            userIdRef.current = userId;
+    
             retrieveUserProducts().then((data)=>{
                 console.log('Received data from promise', data);
                 setProductsData(data);
+                if (!productsData){
+                    setErrorNotification('Products not found');
+                }
             }).then(console.log('This is products Data structure', productsData))
         }
     },
-    [userId, userName])
-
+    [userId, userName, reRender])
 
     return (
         <>
-            <div className="ms-3 mb-4">
-                {errorNotification}
-            </div>
 
             <div style={{display:"flex", alignContent:"center"}}>
                 <Button variant="dark" className="ms-3 mb-2" onClick={handleGoBack}> Back </Button>
-                <span className="mt-2 ms-4">Welcome: <span style={{color:'slateblue'}}> {userName? userName : ''} </span></span>
+                <span className="mt-2 ms-4">Welcome: <span style={{color:'slateblue'}}> {userName? userName : userNameRef.current} </span></span>
             </div>
             
             <div className="ms-3 mt-1 mb-3" style={{width:'96%', borderBottom:"1px solid black"}}> </div>
 
-
-            <Card className="ms-3" style={{width:'96%'}}>
-                <Card.Header as="h5" style={{backgroundColor:'white'}}> Your Works</Card.Header>
-                    <Card.Body>
-                        {productsData?
-                            (<Container fluid className="mt-2 mb-5">
-                                <Row xs={1} s={2} md={2} lg={3} xl={4} xxl={5} style={{justifyContent:'flex-start'}}>
-                                    {productsData.map(product => 
-                                        <Col style={{marginLeft:'0px'}}>
-                                            <Card style={{ width: '18rem', marginTop: '10px', marginBottom:'20px'}}>
-                                            <Card.Img variant="top" src={product.image_url} style={{ minHeight: '220px', maxHeight:'220px'}}/>
-                                            <Card.Body>
-                                                <Card.Title>{product.name}</Card.Title>
-                                                <Card.Text>
-                                                {product.description}
-                                                </Card.Text>
-                                                    <Link to={`/products/${product.id}`} >
-                                                        <Button variant="dark"> See Details </Button>
-                                                    </Link>
-                                                    <Link to={`/products/${product.id}`} >
-                                                        <Button variant="secondary"> Update </Button>
-                                                    </Link>
-                                            </Card.Body>
-                                            </Card>             
-                                        </Col>
-                                    )}
-                                </Row>
-                            </Container>
-                        ) : (<div className="ms-1 mt-3 mb-4" style={{color:'gray'}}> No Products Found </div>)
-                        }
-                    </Card.Body>
-                </Card>
-                <div className="ms-3 mt-3 mb-3" style={{width:'96%', borderBottom:"1px solid black"}}> </div>
-                <Container fluid>
+            <Container fluid>
                     <Row>
                         <Col style={{maxWidth:'100px'}}>
                             <span className="ms-4" style={{color:'black', fontWeight:'600', fontSize:'20px'}}>Tools</span>
@@ -136,7 +119,7 @@ export default function Dashboard (){
                     </Row>
                 </Container>
                 {
-                    showItem == "addProduct"?
+                    showItem === "addProduct"?
                     (
                         <Container fluid className="ms-3">
                             <AddProductForm />
@@ -147,7 +130,7 @@ export default function Dashboard (){
                     )
                 }
                 {
-                    showItem == "viewCart"?
+                    showItem === "viewCart"?
                     (
                         <Container fluid className="ms-3">
                             <AddProductForm />
@@ -158,7 +141,7 @@ export default function Dashboard (){
                     )
                 }
                 {
-                    showItem == "viewOrders"?
+                    showItem === "viewOrders"?
                     (   
                         <Container fluid className="ms-3">
                             <AddProductForm />
@@ -168,6 +151,36 @@ export default function Dashboard (){
                         </Container>
                     )
                 }
+            <div className="ms-3 mt-3 mb-3" style={{width:'96%', borderBottom:"1px solid black"}}> </div>
+
+            <Card className="ms-3" style={{width:'96%', display: showProducts? 'block': 'none'}} id="products-overview">
+                <Card.Header as="h5" style={{backgroundColor:'white'}}> Manage Your Works</Card.Header>
+                    <Card.Body className="mb-0 pb-0">
+                        {productsData?
+                            (<Container fluid className="mt-2 mb-5 pb-0">
+                                <Row xs={1} s={2} md={2} lg={3} xl={4} xxl={5} style={{justifyContent:'flex-start'}}>
+                                    {productsData.map(product => 
+                                        <Col style={{marginLeft:'0px'}}>
+                                            <Card style={{ width: '18rem', marginTop: '10px', marginBottom:'20px'}}>
+                                            <Card.Img variant="top" src={product.image_url} style={{ minHeight: '220px', maxHeight:'220px'}}/>
+                                            <Card.Body>
+                                                <Card.Title>{product.name}</Card.Title>
+                                                <Card.Text>
+                                                {product.description}
+                                                </Card.Text>
+                                                    <Link to={`/users/${product.id}/products`} >
+                                                        <Button variant="dark" className="btn-sm"> Details </Button>
+                                                    </Link>
+                                            </Card.Body>
+                                            </Card>             
+                                        </Col>
+                                    )}
+                                </Row>
+                            </Container>
+                        ) : (<div className="ms-1 mt-3 mb-4" style={{color:'gray'}}> {errorNotification} </div>)
+                        }
+                    </Card.Body>
+                </Card>
         </>
     )
 }

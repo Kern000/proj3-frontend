@@ -4,24 +4,28 @@ import env from "react-dotenv";
 
 export default function UploadWidget(){
 
-    const {setImageUrl, setThumbnailUrl} = useContext(CloudinaryContext);
+    const {setImageUrl, setThumbnailUrl, setImageUploaded} = useContext(CloudinaryContext);
     const [notification, setNotification] = useState('')
     
     const cloudinaryRef = useRef();
     const widgetRef = useRef();
 
+    const cloudinaryNameRef = useRef(env.CLOUDINARY_NAME);
+    const cloudinaryUploadPresetRef = useRef(env.CLOUDINARY_UPLOAD_PRESET);
+
     useEffect(() =>{
         cloudinaryRef.current = window.cloudinary;
-        console.log('cloudname here', env.CLOUDINARY_NAME);
-        console.log('cloudpreset here', env.CLOUDINARY_UPLOAD_PRESET);
         setNotification('');
 
+        console.log('cloudname Ref here', cloudinaryNameRef);
+        console.log('cloudpreset ref here', cloudinaryUploadPresetRef);    
+
         widgetRef.current = cloudinaryRef.current.createUploadWidget({
-            cloudName: env.CLOUDINARY_NAME,
-            uploadPreset: env.CLOUDINARY_UPLOAD_PRESET,       
+            cloudName: cloudinaryNameRef.current,
+            uploadPreset: cloudinaryUploadPresetRef.current,       
         }, function(error, result){
            console.log(result)
-           if (!error && result.event == 'success'){
+           if (!error && result.event === 'success'){
                 
                 console.log('cloudinary is working');
                 const cloudinaryImageUrl = result.info.url;
@@ -31,9 +35,11 @@ export default function UploadWidget(){
 
                 setImageUrl(cloudinaryImageUrl);
                 setThumbnailUrl(cloudinaryThumbnailUrl);
+                setImageUploaded(true);
 
                 document.querySelector("#uploaded_image").src = cloudinaryImageUrl;
                 document.querySelector("#uploaded_image").style.display = "block";
+                document.querySelector("#new_image_tag").style.display = "block";
                 
                 console.log('cloudinary data retrieved')
                 setNotification("Upload Success!")
@@ -52,7 +58,12 @@ export default function UploadWidget(){
             <div>
                 <button onClick={handleWidgetClick} className="mt-3 mb-1 btn btn-primary btn-sm"> Upload New Image </button>
             </div>
-            <img src="" className="mt-2" style={{display:'none', maxWidth:'600px', objectFit:'contain'}} id="uploaded_image" alt="uploadedImage"/>
+            <div>
+                <h6 id="new_image_tag" className="mt-3" style={{display:'none'}}> Image Uploaded </h6>
+            </div>
+            <div>
+                <img src="" className="mt-2" style={{display:'none', maxWidth:'500px', objectFit:'contain'}} id="uploaded_image" alt="uploadedImage"/>
+            </div>
             <div style={{color:'green'}}>
                 {notification}
             </div>

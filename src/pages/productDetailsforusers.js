@@ -1,6 +1,6 @@
 import '../App.css';
 
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useContext, useRef} from 'react';
 import APIHandler from '../api/apiHandler';
 
 import Card from 'react-bootstrap/Card';
@@ -8,19 +8,13 @@ import Button from 'react-bootstrap/Button';
 
 import {Link, useParams, useNavigate} from 'react-router-dom';
 
-export default function ProductDetails () {
+import { UserContext } from '../context/user-context';
+
+export default function ProductDetailsForDashBoard () {
 
     const [singleProductData, setSingleProductData] = useState();
-
-    const retrieveProductById = async (productId) => {
-        try{
-            let response = await APIHandler.get(`/products/${productId}`);
-            console.log('retrieving single product', response.data.product);
-            setSingleProductData(response.data.product)
-        } catch (error) {
-            console.error('error retrieving product data', error)
-        }
-    }
+    
+    const {userId, setUserId} = useContext(UserContext);
 
     const {productId} = useParams();
     
@@ -30,7 +24,22 @@ export default function ProductDetails () {
         navigate(-1);   
     }
 
+    const userIdRef = useRef(userId);
+
+    const retrieveProductById = async (productId) => {
+        try{
+            let response = await APIHandler.get(`/users/${productId}/products?userId=${userId || userIdRef.current}`);
+            console.log('retrieving single product', response.data.product);
+            setSingleProductData(response.data.product)
+        } catch (error) {
+            console.error('error retrieving product data', error)
+        }
+    }
+
     useEffect(() => {
+        if (localStorage.getItem('userId')){
+            setUserId(localStorage.getItem('userId'))
+        }
         retrieveProductById(productId)}
     ,[])
 
@@ -67,7 +76,7 @@ export default function ProductDetails () {
                         <span style={{fontWeight:'600'}}>Provided By: </span> <Link to={`/products/user/${singleProductData.user.id}`} > {singleProductData.user.name} </Link> 
                     </Card.Text>
                     <Card.Text>
-                        <h5> Description: </h5>
+                        <h6> Description: </h6>
                         {singleProductData.description}
                     </Card.Text>
                     <Card.Text> 
@@ -82,12 +91,15 @@ export default function ProductDetails () {
                     <Card.Text>
                         {singleProductData.chapter_content}
                     </Card.Text>
-                    
-                    <Button variant="success">Add to Cart</Button>
+                    <Link to={`/users/${singleProductData.id}/update`} >
+                        <Button variant="secondary">Update Item</Button>
+                    </ Link>
+                    <Button variant="danger" className="ms-3">Delete Item</Button>
+                    <Button variant="success" className="ms-3">Add to Cart</Button>
                     </Card.Body>
                 </Card>
             ) : (
-                <div> Loading... </div>
+                <div className="ms-4"> Loading... </div>
             )}
         </>
     )

@@ -89,7 +89,7 @@ export default function ProductListing (){
                         </Row>
                     </Container>
                 </>
-            ) : (<div> Loading... </div>)
+            ) : (<div className="ms-4"> Loading... </div>)
             }
             </body>
         </>
