@@ -16,7 +16,7 @@ import Offcanvas from 'react-bootstrap/Offcanvas';
 export default function NavBar(){
 
     const {loginState} = useContext(UserContext);
-    const {userId} = useContext(UserContext);
+    const {userId, setUserId} = useContext(UserContext);
     const {setSearchData} = useContext(SearchContext);
 
     const [name, setName] = useState();
@@ -24,16 +24,29 @@ export default function NavBar(){
     
     let navigate = useNavigate();
 
-    const handleLogin = () => {
+    const handleLoginState = async () => {
         if (loginState){
-            navigate(`/users/dashboard/${userId}`);
+            try {
+                await APIHandler.get('/users/check-login');
+                console.log('jwt still in play')
+
+                if (localStorage.getItem('userId')){
+                    setUserId(localStorage.getItem('userId'))
+                }
+    
+                navigate(`/users/dashboard/${userId}`);
+
+            } catch (error){
+                console.log('login again')
+                navigate('/users/login');
+            }
         } else {
             navigate('/users/login');
         }
     }
 
     const navigateToSearchResult = () => {
-        navigate('/search-results');
+        navigate('/search-results')
     }
 
     const handleHome = () => {
@@ -95,16 +108,16 @@ export default function NavBar(){
                     </Offcanvas.Header>
                     <Offcanvas.Body>
                     <Nav className="justify-content-end flex-grow-1 pe-2 mb-3">
-                        <Nav.Link onClick={handleLogin} className="mt-2">Dashboard</Nav.Link>
-                        <Nav.Link onClick={handleLogin} className="mt-2">Start Listing</Nav.Link>
+                        <Nav.Link onClick={handleLoginState} className="mt-2">Dashboard</Nav.Link>
+                        <Nav.Link onClick={handleLoginState} className="mt-2">Start Listing</Nav.Link>
                         <NavDropdown
                         title="Saved Works"
                         id={`offcanvasNavbarDropdown-expand-${expand}`}
                         className="mt-2 me-4"
                         >
-                        <NavDropdown.Item onClick={handleLogin}>Favorites (coming soon)</NavDropdown.Item>
+                        <NavDropdown.Item onClick={handleLoginState}>Favorites (coming soon)</NavDropdown.Item>
                         <NavDropdown.Divider />
-                        <NavDropdown.Item onClick={handleLogin}>Saved User (coming soon)</NavDropdown.Item>
+                        <NavDropdown.Item onClick={handleLoginState}>Saved User (coming soon)</NavDropdown.Item>
                         </NavDropdown>
                     </Nav>
                     <Form onSubmit={handleSubmit} className="d-flex">

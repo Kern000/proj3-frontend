@@ -22,6 +22,7 @@ import Register from './pages/register';
 import Dashboard from './pages/dashboard';
 import SearchResults from './pages/searchResults';
 import ProductDetailsForDashBoard from './pages/productDetailsforusers';
+import LoginForCart from './pages/loginForCart';
 
 // Components
 import NavBar from './components/navbar';
@@ -44,6 +45,7 @@ function App() {
                         <Route path="/products/:productId" element={<ProductDetails />} />
                         <Route path="/products/user/:userId" element={<ProductsByUser />} />
                         <Route path="/users/login" element={<UserLogin />} />
+                        <Route path="/users/login/addCart" element={<LoginForCart />} />
                         <Route path="/users/register" element={<Register />} />
                         <Route path="/users/dashboard/:userId" element={<Dashboard />} />
                         <Route path="/search-results" element={<SearchResults />} />

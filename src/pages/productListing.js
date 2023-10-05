@@ -42,21 +42,21 @@ export default function ProductListing (){
                 <Button variant="secondary" onClick={handleShowSearch}>
                     =
                 </Button>
-                    <Offcanvas  show={showSearchForm} 
-                                onHide={handleCloseSearch}
-                                style={{maxWidth:'280px'}}>
-                        <Offcanvas.Header className="pb-1" closeButton>
-                        </Offcanvas.Header>
-                        <Offcanvas.Body>
-                            <SearchForm />
-                        </Offcanvas.Body>
-                    </Offcanvas>
+                <Offcanvas  show={showSearchForm} 
+                            onHide={handleCloseSearch}
+                            style={{maxWidth:'280px'}}>
+                    <Offcanvas.Header className="pb-1" closeButton>
+                    </Offcanvas.Header>
+                    <Offcanvas.Body>
+                        <SearchForm />
+                    </Offcanvas.Body>
+                </Offcanvas>
+                <span className="ms-4" style={{fontWeight:'600', fontSize:'20px'}}>Latest Works</span>
             </div>
 
             {productsData? (
                 <>
-                <h4 className="ms-3">Latest Works</h4>
-                    <Container fluid>
+                     <Container fluid>
                         <Row xs={1} s={2} md={2} lg={3} xl={4} xxl={5} style={{justifyContent:'flex-start'}}>
                             {productsData.map(product =>  
                                 <Col style={{marginLeft:'0px'}} key={product.id}>

@@ -1,16 +1,22 @@
 import '../App.css';
 
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import APIHandler from '../api/apiHandler';
 
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 
 import {Link, useParams, useNavigate} from 'react-router-dom';
+import { UserContext } from '../context/user-context';
+import { CartContext } from '../context/cart-context';
 
 export default function ProductDetails () {
 
     const [singleProductData, setSingleProductData] = useState();
+    const [addToCartNotification, setAddToCartNotification] = useState();
+
+    const {userId, setUserId} = useContext(UserContext);
+    const {productsInCart, setProductsInCart, cartNumber} = useContext(CartContext);
 
     const retrieveProductById = async (productId) => {
         try{
@@ -30,14 +36,38 @@ export default function ProductDetails () {
         navigate(-1);   
     }
 
+    const handleLoginStateForCart = async () => {
+        try {
+            await APIHandler.get('/users/check-login');
+            console.log('jwt still in play')
+
+            if (localStorage.getItem('userId')){
+                setUserId(localStorage.getItem('userId'))
+            }
+
+            // pending cart Number assignment and payload creation and post to add to cart
+            await APIHandler.post('')
+
+            setAddToCartNotification("One Item added to cart!")
+
+        } catch (error){
+            console.log('login to add cart')
+            navigate('/users/login/addCart');
+        }
+    }
+
     useEffect(() => {
         retrieveProductById(productId)}
     ,[])
 
+
     return (
         <>
             <Button variant="secondary" className="ms-4 mt-2 mb-3" onClick={handleGoBack}> Back </Button>
-
+            {addToCartNotification? 
+                (<div style={{backgroundColor:'green', color:'brown'}}> {addToCartNotification}</div>) 
+                : null
+            }
             {singleProductData? (
                 <Card   style=  {{    
                                     width: '90%', 
@@ -83,7 +113,7 @@ export default function ProductDetails () {
                         {singleProductData.chapter_content}
                     </Card.Text>
                     
-                    <Button variant="success">Add to Cart</Button>
+                    <Button variant="success" onClick={()=>handleLoginStateForCart()}>Add to Cart</Button>
                     </Card.Body>
                 </Card>
             ) : (
