@@ -6,21 +6,26 @@ import APIHandler from '../api/apiHandler';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 
+import DeleteConfirmation from '../components/delete-confirmation';
+
 import {Link, useParams, useNavigate} from 'react-router-dom';
 
 import { UserContext } from '../context/user-context';
+import { DeletionContext } from '../context/delete-context';
 
 export default function ProductDetailsForDashBoard () {
 
     const [singleProductData, setSingleProductData] = useState();
     
     const {userId, setUserId} = useContext(UserContext);
+    const {idOfProductForDeletion, setIdOfProductForDeletion} = useContext(DeletionContext);
 
     const {productId} = useParams();
     
     let navigate = useNavigate();
 
     function handleGoBack(){
+        setIdOfProductForDeletion('')
         navigate(-1);   
     }
 
@@ -48,11 +53,11 @@ export default function ProductDetailsForDashBoard () {
             <Button variant="secondary" className="ms-4 mt-2 mb-3" onClick={handleGoBack}> Back </Button>
 
             {singleProductData? (
+                <>
                 <Card   style=  {{    
                                     width: '90%', 
                                     maxWidth:'800px', 
-                                    justifyContent:'space-evenly',
-                                    marginBottom:'60px',
+                                    marginBottom: idOfProductForDeletion? '20px':'150px',
                                     marginLeft:'20px',
                                 }}
                         className="product-details"
@@ -94,10 +99,12 @@ export default function ProductDetailsForDashBoard () {
                     <Link to={`/users/${singleProductData.id}/update`} >
                         <Button variant="secondary">Update Item</Button>
                     </ Link>
-                    <Button variant="danger" className="ms-3">Delete Item</Button>
+                    <Button variant="danger" className="ms-3" onClick={()=>setIdOfProductForDeletion(productId)}>Delete Item</Button>
                     <Button variant="success" className="ms-3">Add to Cart</Button>
                     </Card.Body>
                 </Card>
+                <DeleteConfirmation />
+            </>
             ) : (
                 <div className="ms-4"> Loading... </div>
             )}

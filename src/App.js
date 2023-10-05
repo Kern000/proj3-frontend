@@ -11,6 +11,7 @@ import CartContextData from './context/cart-context';
 import SearchContextData from './context/search-context';
 import CloudinaryContextData from './context/cloudinary-context';
 import DashBoardContextData from './context/dashboard-context';
+import DeletionContextData from './context/delete-context';
 
 // Pages
 import ProductListing from './pages/productListing';
@@ -36,19 +37,21 @@ function App() {
             <CartContextData>
               <DashBoardContextData>
                 <SearchContextData>
-                  <NavBar />
-                    <Routes>
-                      <Route path="/" element={<ProductListing />} />
-                      <Route path="/products/:productId" element={<ProductDetails />} />
-                      <Route path="/products/user/:userId" element={<ProductsByUser />} />
-                      <Route path="/users/login" element={<UserLogin />} />
-                      <Route path="/users/register" element={<Register />} />
-                      <Route path="/users/dashboard/:userId" element={<Dashboard />} />
-                      <Route path="/search-results" element={<SearchResults />} />
-                      <Route path="/users/:productId/products/" element={<ProductDetailsForDashBoard />} />
-                      <Route path="/users/:productId/update" element={<UpdateProductForm />} />
-                    </Routes>
-                  <Footer />
+                  <DeletionContextData>
+                    <NavBar />
+                      <Routes>
+                        <Route path="/" element={<ProductListing />} />
+                        <Route path="/products/:productId" element={<ProductDetails />} />
+                        <Route path="/products/user/:userId" element={<ProductsByUser />} />
+                        <Route path="/users/login" element={<UserLogin />} />
+                        <Route path="/users/register" element={<Register />} />
+                        <Route path="/users/dashboard/:userId" element={<Dashboard />} />
+                        <Route path="/search-results" element={<SearchResults />} />
+                        <Route path="/users/:productId/products/" element={<ProductDetailsForDashBoard />} />
+                        <Route path="/users/:productId/update" element={<UpdateProductForm />} />
+                      </Routes>
+                    <Footer />
+                  </DeletionContextData>
                 </SearchContextData>
               </DashBoardContextData>
             </CartContextData>            
