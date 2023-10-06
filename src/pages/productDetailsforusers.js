@@ -100,7 +100,6 @@ export default function ProductDetailsForDashBoard () {
                         <Button variant="secondary">Update Item</Button>
                     </ Link>
                     <Button variant="danger" className="ms-3" onClick={()=>setIdOfProductForDeletion(productId)}>Delete Item</Button>
-                    <Button variant="success" className="ms-3">Add to Cart</Button>
                     </Card.Body>
                 </Card>
                 <DeleteConfirmation />

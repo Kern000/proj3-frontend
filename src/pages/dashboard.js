@@ -8,7 +8,7 @@ import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 
 import AddProductForm from "../components/add-product";
-import UpdateProductForm from "../components/update-product";
+import Cart from "../components/cart";
 
 import { Link, useNavigate } from 'react-router-dom';
 import { UserContext } from "../context/user-context";
@@ -39,6 +39,11 @@ export default function Dashboard (){
         }
     }
 
+    const handleShowProductButton = () => {
+        setShowItem('');
+        setShowProducts(true);
+    }
+
     function handleGoBack(){
         navigate(-1);   
     }
@@ -52,7 +57,7 @@ export default function Dashboard (){
                   
             return response.data.products;
         } catch (error) {
-            setErrorNotification('Products not found')
+            setErrorNotification('Products not found');
         }
     }
 
@@ -114,7 +119,13 @@ export default function Dashboard (){
                                     style={{border:'1px solid black'}}
                                     value="viewOrders"
                                     onClick={(event)=>handleToggleButton(event)}
-                            > View Orders </Button>                   
+                            > View Orders </Button>
+
+                            <Button className="ms-3 mt-1 btn-sm" 
+                                    variant="light" 
+                                    style={{border:'1px solid black'}}
+                                    onClick={()=>handleShowProductButton()}
+                            > View Your Works </Button>
                         </Col>
                     </Row>
                 </Container>
@@ -133,7 +144,7 @@ export default function Dashboard (){
                     showItem === "viewCart"?
                     (
                         <Container fluid className="ms-3">
-                            <AddProductForm />
+                            <Cart />
                         </Container>
                     ): (
                         <Container fluid className="ms-3">

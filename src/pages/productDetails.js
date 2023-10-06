@@ -13,10 +13,11 @@ import { CartContext } from '../context/cart-context';
 export default function ProductDetails () {
 
     const [singleProductData, setSingleProductData] = useState();
-    const [addToCartNotification, setAddToCartNotification] = useState();
+    const [addToCartNotification, setAddToCartNotification] = useState('');
+    const [cartErrorNotification, setCartErrorNotification] = useState('');
 
     const {userId, setUserId} = useContext(UserContext);
-    const {productsInCart, setProductsInCart, cartNumber} = useContext(CartContext);
+    const {cartNumber, setCartNumber} = useContext(CartContext);
 
     const retrieveProductById = async (productId) => {
         try{
@@ -36,20 +37,74 @@ export default function ProductDetails () {
         navigate(-1);   
     }
 
-    const handleLoginStateForCart = async () => {
+    const getCartNumber = async () => {
         try {
+            console.log('frontend get cart number hit')
+            let response = await APIHandler.get('/cart/assign-cart-number')
+            console.log('after fetch cart number, response here=>', response.data.cartNumber)
+            setCartNumber(response.data.cartNumber);
+
+        } catch (error) {
+            console.log('fail to get cart number', error)
+            return;
+        }
+    }
+
+    const handleLoginStateForCart = async () => {
+
+        setCartErrorNotification('');
+        setAddToCartNotification('');
+        document.querySelector('#cart-add-notify').style.display = 'none'
+        document.querySelector('#error-notify').style.display = 'none'
+
+        try {
+
             await APIHandler.get('/users/check-login');
-            console.log('jwt still in play')
+            console.log('checked userlogin')
 
             if (localStorage.getItem('userId')){
                 setUserId(localStorage.getItem('userId'))
+                console.log('set userId from local storage')
             }
+            
+            try {
 
-            // pending cart Number assignment and payload creation and post to add to cart
-            await APIHandler.post('')
+                if(cartNumber===''){
+                    console.log('frontend start get cart number');
+                    await getCartNumber()
+                }
 
-            setAddToCartNotification("One Item added to cart!")
+                try{
+                    const payload = {
+                        "user_id": userId,
+                        "cart_id": cartNumber,
+                        "product_id": parseInt(productId),
+                        "product_name": singleProductData.name,
+                        "price": singleProductData.price,
+                        "thumbnail_url": singleProductData.thumbnail_url
+                    }
+    
+                    console.log('cart payload', payload);
+    
+                    await APIHandler.post(`cart/${productId}/add?userId=${userId}`, payload)
+    
+                    console.log('posted to cart')
+    
+                    setAddToCartNotification("One Item added to cart!");
 
+                    document.querySelector('#cart-add-notify').style.display = 'flex'
+
+                } catch (error){
+                    console.log("error adding item to cart");
+                    setCartErrorNotification("Error adding item to cart");
+                    document.querySelector('#error-notify').style.display = 'flex'
+                }
+
+            } catch (error){
+                console.log('fail to get cart Number')
+                setCartErrorNotification("Error adding item to cart");
+                document.querySelector('#error-notify').style.display = 'flex'
+            }
         } catch (error){
             console.log('login to add cart')
             navigate('/users/login/addCart');
@@ -64,16 +119,13 @@ export default function ProductDetails () {
     return (
         <>
             <Button variant="secondary" className="ms-4 mt-2 mb-3" onClick={handleGoBack}> Back </Button>
-            {addToCartNotification? 
-                (<div style={{backgroundColor:'green', color:'brown'}}> {addToCartNotification}</div>) 
-                : null
-            }
+            
             {singleProductData? (
                 <Card   style=  {{    
                                     width: '90%', 
                                     maxWidth:'800px', 
                                     justifyContent:'space-evenly',
-                                    marginBottom:'60px',
+                                    marginBottom:'30px',
                                     marginLeft:'20px',
                                 }}
                         className="product-details"
@@ -119,6 +171,31 @@ export default function ProductDetails () {
             ) : (
                 <div> Loading... </div>
             )}
+
+            <div id='cart-add-notify' style={{      backgroundColor:'green', 
+                                                    color:'white',
+                                                    height:'30px',
+                                                    display:'none',
+                                                    justifyContent:'center',
+                                                    alignItems:'center',
+                                                    marginBottom:'50px',
+                                                    marginTop:'0px'
+                                                }}
+            >
+            {addToCartNotification}
+            </div>
+            <div id='error-notify' style={{         backgroundColor:'red', 
+                                                    color:'white',
+                                                    height:'30px',
+                                                    display:'none',
+                                                    justifyContent:'center',
+                                                    alignItems:'center',
+                                                    marginBottom:'50px',
+                                                    marginTop: '0px'
+            }}
+            > {cartErrorNotification}</div>
+            <div style={{height:'80px'}}>
+            </div>
         </>
     )
 }

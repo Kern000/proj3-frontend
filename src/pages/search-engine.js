@@ -9,10 +9,10 @@ import APIHandler from '../api/apiHandler';
 
 export default function SearchForm(){
 
-    const [name, setName] = useState(null);
-    const [minPrice, setMinPrice] = useState(null);
-    const [maxPrice, setMaxPrice] = useState(null);
-    const [postCategoryId, setPostCategoryId] = useState(null);
+    const [name, setName] = useState('');
+    const [minPrice, setMinPrice] = useState('');
+    const [maxPrice, setMaxPrice] = useState('');
+    const [postCategoryId, setPostCategoryId] = useState('');
     const [genreId, setGenreId] = useState([]);
 
     const [errorNotification, setErrorNotification] = useState();   

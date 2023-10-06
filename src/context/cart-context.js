@@ -5,25 +5,10 @@ export const CartContext = createContext();
 
 const CartContextData = ({children}) => {
 
-    const [productsInCart, setProductsInCart] = useState('')
-    const [cartNumber, setCartNumber] = useState('')
-
-    const getCartNumber = async () => {
-        try {
-            let response = await APIHandler.get('/assign-cart-number')
-            setCartNumber(response.data.cartNumber);
-            console.log('cart number here', cartNumber)
-        } catch (error) {
-            console.log('fail to get cart number', error)
-        }
-    }
-
-    useEffect(()=>{
-        getCartNumber()
-    }, [])
+    const [cartNumber, setCartNumber] = useState('');
 
     return (
-        <CartContext.Provider value={{productsInCart, setProductsInCart, cartNumber, setCartNumber}}>
+        <CartContext.Provider value={{cartNumber, setCartNumber}}>
             {children}
         </CartContext.Provider>      
     )
