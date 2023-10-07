@@ -34,8 +34,10 @@ export default function ProductDetails () {
     let navigate = useNavigate();
 
     function handleGoBack(){
-        navigate(-1);   
+        navigate(-1);
     }
+
+    let cartNumberInTransit;
 
     const getCartNumber = async () => {
         try {
@@ -43,6 +45,7 @@ export default function ProductDetails () {
             let response = await APIHandler.get('/cart/assign-cart-number')
             console.log('after fetch cart number, response here=>', response.data.cartNumber)
             setCartNumber(response.data.cartNumber);
+            cartNumberInTransit = response.data.cartNumber;
 
         } catch (error) {
             console.log('fail to get cart number', error)
@@ -77,7 +80,7 @@ export default function ProductDetails () {
                 try{
                     const payload = {
                         "user_id": userId,
-                        "cart_id": cartNumber,
+                        "cart_id": cartNumber? cartNumber : cartNumberInTransit,
                         "product_id": parseInt(productId),
                         "product_name": singleProductData.name,
                         "price": singleProductData.price,

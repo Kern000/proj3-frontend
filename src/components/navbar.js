@@ -93,7 +93,9 @@ export default function NavBar(){
             {['sm'].map((expand) => (
             <Navbar bg="dark" data-bs-theme="dark" key={expand} expand={expand} className="bg-body-tertiary mb-3">
                 <Container fluid>
-                <Navbar.Brand onClick={handleHome}>The Writers' Base</Navbar.Brand>
+                <Navbar.Brand onClick={handleHome}>The Writers' Base <br />
+                    <span style={{fontSize:'12px', color:'#FFFDD0'}}> Where writers, manuscripts, and ideas gather </span>
+                </Navbar.Brand>
                 <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${expand}`} />
 
                 <Navbar.Offcanvas

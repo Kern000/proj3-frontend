@@ -5,6 +5,9 @@ export let baseURL = "https://3000-kern000-projectthreebac-em7lw5jkwpd.ws-us105.
 const APIHandler = axios.create({
     "baseURL": baseURL
 })
+export const APIHandlerForStripe = axios.create({
+    "baseURL": baseURL
+})
 
 export let headersData = {}
 

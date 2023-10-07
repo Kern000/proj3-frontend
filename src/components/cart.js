@@ -6,35 +6,62 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
+import Offcanvas from 'react-bootstrap/Offcanvas';
 
 import { Link } from "react-router-dom";
 
 import { UserContext } from "../context/user-context";
 import { CartContext } from '../context/cart-context'
 
+import env from "react-dotenv";
+import CheckoutForm from "./stripe";
+
 export default function Cart (){
 
     const {userId, setUserId} = useContext(UserContext);
-    const {cartNumber} = useContext(CartContext);
+    const {cartNumber, cartTotalAmount, setCartTotalAmount} = useContext(CartContext);
 
     const [itemsInCart, setItemsInCart] = useState('');
     const [errorNotification, setErrorNotification] = useState('');
     const [cartError, setCartError] = useState('');
     const [cartSuccess, setCartSuccess] = useState('');
 
+    const [showCheckOut, setShowCheckOut] = useState(false);
+    const handleCloseCheckOut = () => setShowCheckOut(false);  
+
     const [reRender, setReRender] = useState(false);
 
-    const userIdRef = useRef(userId);
+    // Stripe
+    let userIdRef = useRef(userId);
+
+    // Cart
+    let cartItems;
 
     const retrieveCartItems = async () => {
         try {
             console.log('userId', userId)
             console.log('cartNumber', cartNumber)
             let response = await APIHandler.get(`/cart?userId=${userId || userIdRef.current}&cartId=${cartNumber}`);
-            console.log('retrieved cart items', response.data.itemsInCart);
-            setItemsInCart(response.data.itemsInCart);
+            let itemsWithQuantityInDb = response.data.itemsInCart.map(item => ({...item, quantityInDb: item.quantity}))
+            console.log('retrieved cart items', itemsWithQuantityInDb);
+            setItemsInCart(itemsWithQuantityInDb);
+
+            cartItems = itemsWithQuantityInDb;
+
+            const totalCalculator = () => {
+        
+                let cartTotal = cartItems.reduce((sum, item) => {
+                    return sum + item.price * item.quantityInDb;
+                }, 0)
+        
+                console.log('cart total here =>', cartTotal);
+                setCartTotalAmount(cartTotal)
+            }
+            
+            totalCalculator();
+
         } catch (error) {
-            setErrorNotification('Fail to get cart items');
+            setErrorNotification('No items in cart');
         }
     }
 
@@ -50,7 +77,7 @@ export default function Cart (){
             retrieveCartItems()
 
             if (!itemsInCart){
-                setErrorNotification('No items found');
+                setErrorNotification('No items in cart');
             }
             console.log('This is cart Data structure', itemsInCart)
         }
@@ -113,7 +140,7 @@ export default function Cart (){
         try{
             await APIHandler.post(`/cart/update-qty?userId=${userId}&cartId=${cartNumber}&productId=${productId}`, payload)
             setCartSuccess('Successful update of quantities')
-            setTimeout(()=> setReRender(!reRender),1500)           
+            setTimeout(()=> setReRender(!reRender),1500)
         } catch (error) {
             setCartError('Fail to update quantities');
         }
@@ -122,7 +149,21 @@ export default function Cart (){
     return (
         <>
             <Card className="ms-3 mt-4" style={{width:'96%'}}>
-                <Card.Header as="h5" style={{backgroundColor:'limegreen', color: 'white'}}> Items in Cart </Card.Header>
+                <Card.Header as="h5" 
+                            style={{backgroundColor:'limegreen', color: 'white', display:'flex', justifyContent:'space-between', alignItems:'center'}}
+                >
+                    Items in Cart
+                    <div>
+                        {cartTotalAmount? (<span>Cart Total: ${cartTotalAmount}</span>) : (null)}
+                        <Button className="btn-md ms-4"
+                                variant="success"
+                                style={{fontSize:'14px'}}
+                                onClick={()=>setShowCheckOut(true)}
+                        >
+                            Cart Checkout
+                        </Button>
+                    </div>
+                </Card.Header>
                     <Card.Body className="mb-0 pb-0">
                         {cartError? (<div style={{backgroundColor:'red', color:'white', display:'flex', justifyContent:'center'}} className="ms-2"> {cartError} </div>) : null }
                         {cartSuccess? (<div style={{backgroundColor:'green', color:'white', display:'flex', justifyContent:'center'}} className="ms-2"> {cartSuccess} </div>) : null }
@@ -137,9 +178,11 @@ export default function Cart (){
                                             <Card.Body className="mb-0 pb-0">
                                                 <Card.Title style={{fontSize:'13px', overflow:'hidden', height:'30px'}}>Title: {cartItem.product_name}</Card.Title>
                                                 <Card.Text style={{fontSize:'13px'}}>
-                                                Price: {cartItem.price}<br />
+                                                Price: $ {cartItem.price}<br />
+                                                Qty: {cartItem.quantityInDb}
+
                                                 <div className="mt-1 mb-0" style={{display:'flex', alignContent:'center'}}>
-                                                Quantity:
+                                                New Qty:
                                                     <input  className='ms-2'
                                                             type='number'
                                                             value={cartItem.quantity}
@@ -171,11 +214,20 @@ export default function Cart (){
                                     )}
                                 </Row>
                             </Container>
-                        ) : (<div className="ms-1 mt-3 mb-4" style={{color:'gray'}}> {errorNotification} </div>)
-                        }
-                        
+                        ) : (<div className="ms-1 mt-3 mb-4" style={{color:'gray'}}> {errorNotification} </div>)                    }                        
                     </Card.Body>
             </Card>
+ 
+        <Offcanvas show={showCheckOut} placement={'end'} onHide={()=>handleCloseCheckOut()}>
+            <Offcanvas.Header closeButton>
+            <Offcanvas.Title> Checkout at Stripe</Offcanvas.Title>
+            </Offcanvas.Header>
+            <Offcanvas.Body>
+                <CheckoutForm />
+            </Offcanvas.Body>
+        </Offcanvas>
+
+
         </>
     )
 }
