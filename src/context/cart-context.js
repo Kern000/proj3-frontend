@@ -1,5 +1,4 @@
-import React, {useState, createContext, useEffect} from 'react';
-import APIHandler from '../api/apiHandler';
+import React, {useState, createContext} from 'react';
 
 export const CartContext = createContext();
 

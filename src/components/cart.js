@@ -13,8 +13,7 @@ import { Link } from "react-router-dom";
 import { UserContext } from "../context/user-context";
 import { CartContext } from '../context/cart-context'
 
-import env from "react-dotenv";
-import CheckoutForm from "./stripe";
+import CheckoutForm from "./checkout";
 
 export default function Cart (){
 
@@ -31,10 +30,7 @@ export default function Cart (){
 
     const [reRender, setReRender] = useState(false);
 
-    // Stripe
     let userIdRef = useRef(userId);
-
-    // Cart
     let cartItems;
 
     const retrieveCartItems = async () => {
@@ -173,7 +169,7 @@ export default function Cart (){
                                 <Row xs={2} s={3} md={4} lg={5} xl={6} xxl={7} style={{justifyContent:'flex-start'}}>
                                     {itemsInCart.map(cartItem => 
                                         <Col style={{marginLeft:'0px'}}>
-                                            <Card style={{ width: '10rem', height:'320px', marginTop: '10px'}}>
+                                            <Card style={{ width: '10rem', height:'330px', marginTop: '10px'}}>
                                             <Card.Img variant="top" src={cartItem.thumbnail_url} style={{ minHeight: '120px', maxHeight:'120px'}}/>
                                             <Card.Body className="mb-0 pb-0">
                                                 <Card.Title style={{fontSize:'13px', overflow:'hidden', height:'30px'}}>Title: {cartItem.product_name}</Card.Title>
@@ -200,10 +196,10 @@ export default function Cart (){
                                                     </Button>
                                                 </Card.Text>
                                                 <Link to={`/products/${cartItem.product_id}`}>
-                                                    <Button variant="warning" className="btn-sm mt-1" style={{fontSize:'10px'}}>Details</Button>
+                                                    <Button variant="warning" className="btn-sm" style={{fontSize:'10px'}}>Details</Button>
                                                 </Link>
                                                 <Button variant='dark' 
-                                                        className="btn-sm ms-3 mt-1" 
+                                                        className="btn-sm ms-3" 
                                                         style={{fontSize:'10px'}}
                                                         id={cartItem.product_id}
                                                         onClick={(event)=>handleDeleteSubmit(event)}
@@ -226,8 +222,6 @@ export default function Cart (){
                 <CheckoutForm />
             </Offcanvas.Body>
         </Offcanvas>
-
-
         </>
     )
 }

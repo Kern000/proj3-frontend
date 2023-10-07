@@ -23,6 +23,7 @@ import Dashboard from './pages/dashboard';
 import SearchResults from './pages/searchResults';
 import ProductDetailsForDashBoard from './pages/productDetailsforusers';
 import LoginForCart from './pages/loginForCart';
+import SuccessPage from './pages/success';
 
 // Components
 import NavBar from './components/navbar';
@@ -51,6 +52,7 @@ function App() {
                         <Route path="/search-results" element={<SearchResults />} />
                         <Route path="/users/:productId/products/" element={<ProductDetailsForDashBoard />} />
                         <Route path="/users/:productId/update" element={<UpdateProductForm />} />
+                        <Route path="/paymentsuccess" element={<SuccessPage />} />
                       </Routes>
                     <Footer />
                   </DeletionContextData>

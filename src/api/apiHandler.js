@@ -13,10 +13,10 @@ export let headersData = {}
 
 export const setAuthHeader = async (accessToken, refreshToken) => {
 
-        localStorage.setItem("accessToken", accessToken);
-        localStorage.setItem("refreshToken", refreshToken);
-        headersData["Authorization"] = `Bearer ${accessToken}`
-        console.log('set item with setAuth header', headersData["Authorization"])
+    localStorage.setItem("accessToken", accessToken);
+    localStorage.setItem("refreshToken", refreshToken);
+    headersData["Authorization"] = `Bearer ${accessToken}`
+    console.log('set item with setAuth header', headersData["Authorization"])
     APIHandler.defaults.headers.common["Authorization"] = headersData["Authorization"]
 }
 

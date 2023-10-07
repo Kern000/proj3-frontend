@@ -1,6 +1,6 @@
 import React, {useContext, useState} from 'react';
 import { useNavigate } from 'react-router-dom';
-import APIHandler from '../api/apiHandler';
+import APIHandler, { headersData } from '../api/apiHandler';
 
 import { UserContext } from '../context/user-context'
 import { SearchContext } from '../context/search-context';
@@ -15,7 +15,6 @@ import Offcanvas from 'react-bootstrap/Offcanvas';
 
 export default function NavBar(){
 
-    const {loginState} = useContext(UserContext);
     const {userId, setUserId} = useContext(UserContext);
     const {setSearchData} = useContext(SearchContext);
 
@@ -25,8 +24,17 @@ export default function NavBar(){
     let navigate = useNavigate();
 
     const handleLoginState = async () => {
-        if (loginState){
+
+        if (localStorage.getItem('accessToken')){
+
+            console.log('get token')
+
             try {
+
+                let accessToken = localStorage.getItem('accessToken');
+                headersData["Authorization"] = `Bearer ${accessToken}`
+                APIHandler.defaults.headers.common["Authorization"] = headersData["Authorization"]
+
                 await APIHandler.get('/users/check-login');
                 console.log('jwt still in play')
 

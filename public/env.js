@@ -1,7 +1,7 @@
 window.env = {
   "ALLUSERSPROFILE": "C:\\ProgramData",
   "APPDATA": "C:\\Users\\user\\AppData\\Roaming",
-  "CHROME_CRASHPAD_PIPE_NAME": "\\\\.\\pipe\\crashpad_15816_HMEPWTWAKFWVOPVD",
+  "CHROME_CRASHPAD_PIPE_NAME": "\\\\.\\pipe\\crashpad_16192_FQABHQRGCIOMIIYH",
   "CLOUDINARY_API_KEY": "117871257461922",
   "CLOUDINARY_API_SECRET": "x3O-LJhwDIVmM1TSowMeZyY9WUc",
   "CLOUDINARY_NAME": "ddmpblr15",
@@ -66,9 +66,6 @@ window.env = {
   "PSModulePath": "C:\\Users\\user\\Documents\\WindowsPowerShell\\Modules;C:\\Program Files\\WindowsPowerShell\\Modules;C:\\WINDOWS\\system32\\WindowsPowerShell\\v1.0\\Modules",
   "PUBLIC": "C:\\Users\\Public",
   "SESSIONNAME": "Console",
-  "STRIPE_ENDPOINT_SECRET": "whsec_kFEFmAlxAL12xQYQx6EXxTv8aBGsskkS",
-  "STRIPE_PUBLISHABLE_KEY": "pk_test_51NnY5NIyWFUO95YuwZ13wUUy8AqXK6hijdnSoakZvnBpGBsvloXrkoyi4PxM4nMeaHN9pybUUKyye7UtdWt2dmVe000IZK2LQC",
-  "STRIPE_SECRET_KEY": "sk_test_51NnY5NIyWFUO95YuIvRaYkedqwXlGYwrZCW09jXpTgSRg2x1iQEmUjXJmeKfPCjBmwy1Twg6w9xNsBoFOAI438vt00STPzF4kq",
   "SystemDrive": "C:",
   "SystemRoot": "C:\\WINDOWS",
   "TEMP": "C:\\Users\\user\\AppData\\Local\\Temp",

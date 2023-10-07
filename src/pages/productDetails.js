@@ -1,7 +1,7 @@
 import '../App.css';
 
 import React, {useState, useEffect, useContext} from 'react';
-import APIHandler from '../api/apiHandler';
+import APIHandler, {headersData} from '../api/apiHandler';
 
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
@@ -61,6 +61,12 @@ export default function ProductDetails () {
         document.querySelector('#error-notify').style.display = 'none'
 
         try {
+
+            if (localStorage.getItem('accessToken')){
+                let accessToken = localStorage.getItem('accessToken');
+                headersData["Authorization"] = `Bearer ${accessToken}`
+                APIHandler.defaults.headers.common["Authorization"] = headersData["Authorization"]
+            }
 
             await APIHandler.get('/users/check-login');
             console.log('checked userlogin')
