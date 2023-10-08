@@ -1,5 +1,5 @@
 import React, {useEffect, useRef, useState, useContext} from "react";
-import APIHandler from "../api/apiHandler";
+import APIHandler, {headersData} from "../api/apiHandler";
 
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
@@ -9,6 +9,7 @@ import Card from 'react-bootstrap/Card';
 
 import AddProductForm from "../components/add-product";
 import Cart from "../components/cart";
+import UserOrders from "../components/user-orders";
 
 import { Link, useNavigate } from 'react-router-dom';
 import { UserContext } from "../context/user-context";
@@ -61,25 +62,48 @@ export default function Dashboard (){
         }
     }
 
+    const reAuth = async () => {
+        let accessToken = localStorage.getItem('accessToken');
+        headersData["Authorization"] = `Bearer ${accessToken}`
+        APIHandler.defaults.headers.common["Authorization"] = headersData["Authorization"]
+
+        await APIHandler.get('/users/check-login');
+        console.log('jwt still in play')
+    }
+
     useEffect(() => {
         console.log('useEffect hit', userId, userName);
 
-        if (localStorage.getItem("userId") && localStorage.getItem("userName")){
-            setUserId(localStorage.getItem("userId"));
-            setUserName(localStorage.getItem("userName"));
-        }
+        if (localStorage.getItem('accessToken')){
 
-        if (userId && userName){
-            userNameRef.current = userName;
-            userIdRef.current = userId;
-    
-            retrieveUserProducts().then((data)=>{
-                console.log('Received data from promise', data);
-                setProductsData(data);
-                if (!productsData){
-                    setErrorNotification('Products not found');
+            console.log('get token')
+
+            try {
+
+                reAuth();
+                if (localStorage.getItem("userId") && localStorage.getItem("userName")){
+                    setUserId(localStorage.getItem("userId"));
+                    setUserName(localStorage.getItem("userName"));
                 }
-            }).then(console.log('This is products Data structure', productsData))
+
+                if (userId && userName){
+                    userNameRef.current = userName;
+                    userIdRef.current = userId;
+            
+                    retrieveUserProducts().then((data)=>{
+                        console.log('Received data from promise', data);
+                        setProductsData(data);
+                        if (!productsData){
+                            setErrorNotification('Products not found');
+                        }
+                    }).then(console.log('This is products Data structure', productsData))
+                }
+            } catch (error) {
+                console.log('login again')
+                navigate('/users/login');
+            }
+        } else {
+            navigate('/users/login');
         }
     },
     [userId, userName, reRender])
@@ -155,7 +179,7 @@ export default function Dashboard (){
                     showItem === "viewOrders"?
                     (   
                         <Container fluid className="ms-3">
-                            <AddProductForm />
+                            <UserOrders />
                         </Container>
                     ): (
                         <Container fluid className="ms-3">

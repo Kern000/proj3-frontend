@@ -56,7 +56,7 @@ export default function ProductListing (){
 
             {productsData? (
                 <>
-                     <Container fluid>
+                     <Container fluid className="ms-2">
                         <Row xs={1} s={2} md={2} lg={3} xl={4} xxl={5} style={{justifyContent:'flex-start'}}>
                             {productsData.map(product =>  
                                 <Col style={{marginLeft:'0px'}} key={product.id}>

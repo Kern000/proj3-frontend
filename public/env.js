@@ -1,7 +1,7 @@
 window.env = {
   "ALLUSERSPROFILE": "C:\\ProgramData",
   "APPDATA": "C:\\Users\\user\\AppData\\Roaming",
-  "CHROME_CRASHPAD_PIPE_NAME": "\\\\.\\pipe\\crashpad_16192_FQABHQRGCIOMIIYH",
+  "CHROME_CRASHPAD_PIPE_NAME": "\\\\.\\pipe\\crashpad_14720_KUGIZXOJWKLWXKOU",
   "CLOUDINARY_API_KEY": "117871257461922",
   "CLOUDINARY_API_SECRET": "x3O-LJhwDIVmM1TSowMeZyY9WUc",
   "CLOUDINARY_NAME": "ddmpblr15",
