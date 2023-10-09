@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export let baseURL = "https://3000-kern000-projectthreebac-em7lw5jkwpd.ws-us105.gitpod.io"
+export let baseURL = "https://writers-base-backend.onrender.com"
 
 const APIHandler = axios.create({
     "baseURL": baseURL
