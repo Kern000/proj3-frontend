@@ -12,9 +12,11 @@ import { CartContext } from '../context/cart-context';
 
 export default function ProductDetails () {
 
-    const [singleProductData, setSingleProductData] = useState();
+    const [singleProductData, setSingleProductData] = useState(null);
     const [addToCartNotification, setAddToCartNotification] = useState('');
     const [cartErrorNotification, setCartErrorNotification] = useState('');
+
+    let singleProductPadding;
 
     const {userId, setUserId} = useContext(UserContext);
     const {cartNumber, setCartNumber} = useContext(CartContext);
@@ -23,7 +25,9 @@ export default function ProductDetails () {
         try{
             let response = await APIHandler.get(`/products/${productId}`);
             console.log('retrieving single product', response.data.product);
-            setSingleProductData(response.data.product)
+            singleProductPadding = response.data.product;
+            console.log('singleProductPadding here =>', singleProductPadding)
+            return singleProductPadding;
         } catch (error) {
             console.error('error retrieving product data', error)
         }
@@ -121,7 +125,10 @@ export default function ProductDetails () {
     }
 
     useEffect(() => {
-        retrieveProductById(productId)}
+            retrieveProductById(productId).then((data) => {
+                setSingleProductData(data);
+            })
+    }
     ,[])
 
 
@@ -130,9 +137,9 @@ export default function ProductDetails () {
             <Button variant="secondary" className="ms-4 mt-2 mb-3" onClick={handleGoBack}> Back </Button>
             
             {singleProductData? (
-                <Card   style=  {{    
-                                    width: '90%', 
-                                    maxWidth:'800px', 
+                <Card   style=  {{
+                                    width: '90%',
+                                    maxWidth:'800px',
                                     justifyContent:'space-evenly',
                                     marginBottom:'30px',
                                     marginLeft:'20px',
@@ -145,33 +152,34 @@ export default function ProductDetails () {
                                             objectFit:'contain', 
                                             border: '1px solid silver'}}                                            
                     />
-                    <Card.Body>
-                        
+                    <Card.Body>                        
                     <Card.Title>
                         <h5> Manuscript/Book Title: </h5> 
-                        {singleProductData.name} 
+                        {singleProductData.name || singleProductPadding.name} 
                     </Card.Title>
                     <Card.Text> 
-                        <span style={{fontWeight:'600'}}>Content Id: </span> {singleProductData.id} 
+                        <span style={{fontWeight:'600'}}>Content Id: </span><span> {singleProductData.id || singleProductPadding.id} </span>
                     </Card.Text>
-                    <Card.Text> 
-                        <span style={{fontWeight:'600'}}>Provided By: </span> <Link to={`/products/user/${singleProductData.user.id}`} > {singleProductData.user.name} </Link> 
-                    </Card.Text>
+                    { singleProductData.user?
+                        (<Card.Text> 
+                            <span style={{fontWeight:'600'}}>Provided By: </span> <Link to={`/products/user/${singleProductData.user.id || singleProductPadding.user.id}`} > {singleProductData.user.name} </Link> 
+                        </Card.Text>) : null
+                    }
                     <Card.Text>
                         <h5> Description: </h5>
-                        {singleProductData.description}
+                        {singleProductData.description || singleProductPadding.description}
                     </Card.Text>
                     <Card.Text> 
-                        <span style={{fontWeight:'600'}}>Price: </span> {singleProductData.price} 
+                        <span style={{fontWeight:'600'}}>Price: </span> {singleProductData.price || singleProductPadding.price} 
                     </Card.Text>
                     <Card.Text>
-                        <span style={{fontWeight:'600'}}>Date created: </span> {singleProductData.date_created.slice(0,10)} 
+                        <span style={{fontWeight:'600'}}>Date created: </span> {singleProductData.date_created.slice(0,10) || singleProductPadding.date_created.slice(0,10)} 
                     </Card.Text>
                     <Card.Text>
                         <h6>Chapter Content:</h6>
                     </Card.Text>
                     <Card.Text>
-                        {singleProductData.chapter_content}
+                        {singleProductData.chapter_content || singleProductPadding.chapter_content}
                     </Card.Text>
                     
                     <Button variant="success" onClick={()=>handleLoginStateForCart()}>Add to Cart</Button>
