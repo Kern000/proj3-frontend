@@ -126,7 +126,7 @@ export default function Dashboard (){
                     <span className="mt-2 ms-4">Welcome: <span style={{color:'slateblue'}}> {userName? userName : userNameRef.current} </span></span>
                 </span>
                 <span>
-                <Button variant="secondary" className="btn-sm" onClick={handleLogout}> Logout</Button>
+                <Button variant="secondary" className="btn-sm me-4 mt-1" onClick={handleLogout}> Logout</Button>
                 </span>
             </div>
             

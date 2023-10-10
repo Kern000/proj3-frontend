@@ -98,7 +98,7 @@ export default function UserOrders(){
                                         </Card.Body>
                                     </Card>
                                 </Container>
-                            )) : (<div>...loading</div>)
+                            )) : (<div> No orders found </div>)
                         }
                     </Card.Body>
                 </Card>
