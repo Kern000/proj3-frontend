@@ -115,7 +115,7 @@ export default function Dashboard (){
             navigate('/users/login');
         }
     },
-    [])
+    [userId, userName, reRender])
 
     return (
         <>

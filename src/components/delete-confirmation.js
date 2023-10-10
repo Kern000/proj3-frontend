@@ -8,11 +8,13 @@ import { useNavigate } from 'react-router-dom';
 
 import { DeletionContext } from '../context/delete-context';
 import { UserContext } from '../context/user-context';
+import { DashBoardContext } from '../context/dashboard-context';
 
 export default function DeleteConfirmation () {
 
     const {idOfProductForDeletion, setIdOfProductForDeletion} = useContext(DeletionContext);
     const {userId, setUserId} = useContext(UserContext);
+    const {reRender, setReRender} = useContext(DashBoardContext);
     
     useEffect(()=>{
         if (localStorage.getItem('userId')){
@@ -35,6 +37,7 @@ export default function DeleteConfirmation () {
             APIHandler.post(`/users/${idOfProductForDeletion}/delete?userId=${userId}`);
             setIdOfProductForDeletion('')
             console.log('product deleted');
+            setReRender(!reRender);
             navigateToDashBoard(userId);
 
         } catch (error) {

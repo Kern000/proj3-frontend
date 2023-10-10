@@ -1,5 +1,4 @@
 import React, {useState, useContext, useRef, useEffect} from 'react';
-import { UserContext } from '../context/user-context';
 
 import Form from 'react-bootstrap/Form';
 import Container from 'react-bootstrap/Container';
@@ -7,10 +6,12 @@ import Button from 'react-bootstrap/Button';
 
 import { CloudinaryContext } from '../context/cloudinary-context';
 import { DashBoardContext } from '../context/dashboard-context';
+import { UserContext } from '../context/user-context';
 
 import UploadWidget from './uploadWidget';
 
 import APIHandler from '../api/apiHandler';
+import { Navigate, useNavigate } from 'react-router-dom';
 
 export default function AddProductForm(){
 
@@ -41,6 +42,7 @@ export default function AddProductForm(){
         }
     },[])
 
+    
     const handleGenreChange = (event) => {
         const { value, checked } = event.target;
         
@@ -55,6 +57,12 @@ export default function AddProductForm(){
             let genreArray = genreId.filter((genreId) => genreId !== value)
             setGenreId(genreArray);
         }
+    }
+
+    const navigate = useNavigate();
+    
+    const navigateToDashBoard = () => {
+        navigate(`/users/dashboard/${userId}`)
     }
 
     const handleSubmit = async (event) => {
@@ -118,6 +126,7 @@ export default function AddProductForm(){
                     setShowItem('');
                     setShowProducts(true);
                     setReRender(!reRender);
+                    navigateToDashBoard(userId)
                 },1000);
 
             } catch (error) {

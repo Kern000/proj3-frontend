@@ -8,6 +8,7 @@ import Button from 'react-bootstrap/Button';
 import { useNavigate, useParams } from 'react-router-dom';
 
 import { CloudinaryContext } from '../context/cloudinary-context';
+import { DashBoardContext } from '../context/dashboard-context';
 
 import UploadWidget from './uploadWidget';
 
@@ -25,6 +26,7 @@ export default function UpdateProductForm(){
 
     const {userId, setUserId} = useContext(UserContext);
     const {imageUrl, setImageUrl, thumbnailUrl, setThumbnailUrl, imageUploaded, setImageUploaded} = useContext(CloudinaryContext);
+    const {reRender, setReRender} = useContext(DashBoardContext);
 
     const [singleProductData, setSingleProductData] = useState();
 
@@ -157,6 +159,7 @@ export default function UpdateProductForm(){
                 console.log('product updated')
                 setSuccessNotification("Product Updated");
                 setTimeout(()=>{
+                    setReRender(!reRender);
                     handleGoBack()
                 }, 1000);
                 
