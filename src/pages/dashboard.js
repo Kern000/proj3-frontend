@@ -120,13 +120,13 @@ export default function Dashboard (){
     return (
         <>
 
-            <div style={{display:"flex", alignContent:"space-between"}}>
+            <div style={{display:"flex", justifyContent:"space-between", alignContent:"center"}}>
                 <span>
                     <Button variant="dark" className="ms-3 mb-2" onClick={handleGoBack}> Back </Button>
                     <span className="mt-2 ms-4">Welcome: <span style={{color:'slateblue'}}> {userName? userName : userNameRef.current} </span></span>
                 </span>
                 <span>
-                <Button variant="secondary" className="btn-sm mb-2" onClick={handleLogout}> Logout</Button>
+                <Button variant="secondary" className="btn-sm" onClick={handleLogout}> Logout</Button>
                 </span>
             </div>
             
