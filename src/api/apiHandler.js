@@ -5,6 +5,7 @@ export let baseURL = "https://writers-base-backend.onrender.com"
 const APIHandler = axios.create({
     "baseURL": baseURL
 })
+
 export const APIHandlerForStripe = axios.create({
     "baseURL": baseURL
 })

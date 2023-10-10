@@ -119,8 +119,8 @@ export default function Register (){
                 navigateToLogin();
     
             } catch (error) {
-                console.log('Invalid registration', error)
-                setErrorNotification('Invalid Registration')
+                console.log('Unable to register', error)
+                setErrorNotification('Registration error, user exists')
             }
         }
     }
