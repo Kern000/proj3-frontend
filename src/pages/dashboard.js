@@ -71,6 +71,15 @@ export default function Dashboard (){
         console.log('jwt still in play')
     }
 
+    const handleLogout = () => {
+        headersData = {}
+        APIHandler.defaults.headers.common['Authorization'] = null;
+        localStorage.removeItem("accessToken");
+        localStorage.removeItem("userId");
+        navigate('/')
+        console.log('User has logged out');
+    }
+
     useEffect(() => {
         console.log('useEffect hit', userId, userName);
 
@@ -114,6 +123,7 @@ export default function Dashboard (){
             <div style={{display:"flex", alignContent:"center"}}>
                 <Button variant="dark" className="ms-3 mb-2" onClick={handleGoBack}> Back </Button>
                 <span className="mt-2 ms-4">Welcome: <span style={{color:'slateblue'}}> {userName? userName : userNameRef.current} </span></span>
+                <Button variant="secondary" onClick={handleLogout}> Logout</Button>
             </div>
             
             <div className="ms-3 mt-1 mb-3" style={{width:'96%', borderBottom:"1px solid black"}}> </div>
