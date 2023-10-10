@@ -61,7 +61,7 @@ export default function ProductListing (){
                             {productsData.map(product =>  
                                 <Col style={{marginLeft:'0px'}} key={product.id}>
                                     <Card style={{ width: '18rem', marginTop: '10px', marginBottom:'20px'}}>
-                                    <Card.Img variant="top" src={product.image_url} style={{ minHeight: '220px', maxHeight:'220px'}}/>
+                                    <Card.Img variant="top" src={product.image_url} style={{ minHeight: '220px', maxHeight:'220px', objectFit:'contain'}}/>
                                     <Card.Body>
                                         <Card.Title>{product.name}</Card.Title>
                                         <Card.Text className="mb-1">

@@ -149,7 +149,7 @@ export default function ProductDetails () {
                     <Card.Img   variant="top" src={singleProductData.image_url} 
                                 style={{    maxHeight: '350px', 
                                             maxWidth: '800px', 
-                                            objectFit:'cover', 
+                                            objectFit:'contain', 
                                             border: '1px solid silver'}}                                            
                     />
                     <Card.Body>                        
