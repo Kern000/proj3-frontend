@@ -13,7 +13,6 @@ export default function UserOrders(){
     let ordersArray;
 
     const [fetchedOrders, setFetchedOrders] = useState('');
-    const [errorNotification, setErrorNotification] = useState('');
     const [ordersGroup, setOrdersGroup] = useState('');
 
     const fetchPaidOrders = async () => {

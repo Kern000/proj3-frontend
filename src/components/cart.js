@@ -136,7 +136,7 @@ export default function Cart (){
         try{
             await APIHandler.post(`/cart/update-qty?userId=${userId}&cartId=${cartNumber}&productId=${productId}`, payload)
             setCartSuccess('Successful update of quantities')
-            setTimeout(()=> setReRender(!reRender),1500)
+            setTimeout(()=> setReRender(!reRender),500)
         } catch (error) {
             setCartError('Fail to update quantities');
         }
