@@ -69,7 +69,7 @@ export default function AddProductForm(){
 
         event.preventDefault();
 
-        const generalRegexPattern = /^[a-zA-Z0-9.,_ %+\-!:?;"'@#$&()\/]*$/i;
+        const generalRegexPattern = /^[a-zA-Z0-9.,_ %+\-!:?;"'@#$&()\/\s]*$/i;
         const numberRegexPattern = /^[0-9]{0,}$/;
 
         if (    name ==='' || 
