@@ -6,8 +6,8 @@ This is Project Three of Trent Global’s Full Stack web application development
 
 The task is to create a user-friendly e-commerce website for a shop owner to list their products on the webpage. This project will take on the task of bringing e-commerce capabilities to the literary industry, providing an alternative to the region constrained Amazon KDP, allowing indie writers to list their literary works for sale – be it books, web novels, short stories, poems, or manuscripts.
 
-Live link can be found here:
-Backend admin can be found here:
+Live link can be found: <a href="https://singular-jalebi-389fbc.netlify.app/#/"> Here </a>
+Backend admin can be found: <a href="https://writers-base-backend.onrender.com/admin/login"> Here </a>
 
 ------- Front End Design -------
 
