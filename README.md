@@ -1,70 +1,190 @@
-# Getting Started with Create React App
+Project Three Documentation – E-commerce Web Application
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is Project Three of Trent Global’s Full Stack web application development course, conducted at week 20.
 
-## Available Scripts
+------- Project Introduction -------
 
-In the project directory, you can run:
+The task is to create a user-friendly e-commerce website for a shop owner to list their products on the webpage. This project will take on the task of bringing e-commerce capabilities to the literary industry, providing an alternative to the region constrained Amazon KDP, allowing indie writers to list their literary works for sale – be it books, web novels, short stories, poems, or manuscripts.
 
-### `npm start`
+Live link can be found here:
+Backend admin can be found here:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+------- Front End Design -------
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Page theme features a neat interface for shoppers and users to comfortably enjoy navigation. The color theme is an off-black with white theme for a classy feeling which transits into brighter and exciting colors when navigating at the cart and orders.
 
-### `npm test`
+Landing Page
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+ 
 
-### `npm run build`
+Search Bar
+ 
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Found products
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+ 
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Product Details
+ 
 
-### `npm run eject`
+Add to cart
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+ 
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Login
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+ 
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+Registration
 
-## Learn More
+ 
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Dashboard (if user has uploaded products)
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+ 
 
-### Code Splitting
+Dashboard at empty cart
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+ 
 
-### Analyzing the Bundle Size
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+Dashboard with cart items, allowing update quantity and delete 
 
-### Making a Progressive Web App
+Dashboard checkout
+ 
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+External stripe so that our site do not hold credit card information
 
-### Advanced Configuration
+ 
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
 
-### Deployment
+Payment confirmation (Animation)
+ 
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+View only paid orders here
+ 
 
-### `npm run build` fails to minify
+User can add product 
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+ 
+
+Or update their uploaded products
+ 
+
+ 
+
+For Admin Users – Server side resources are generated
+
+Handle all users’ products – with full search capabilities and hiding of search box
+
+ 
+
+ 
+
+Handle users
+
+ 
+Manage Carts
+
+ 
+
+And lastly, manage Orders
+
+ 
+
+ 
+------- Value proposition -------
+
+This website provides a lightweight alternative to Amazon KDP for listing literary works in less rigid formats, unconstrained by kindle formats. Users may also use this page to redirect traffic to their Amazon KDP page for those who find the low barrier printing capabilities of Amazon appealing.
+
+The indie focus of this page would provide better visibility for indie writers compared to an oversaturated and commercialized marketplace like Amazon. Writers may also use this platform to list their works for reading and critique rather than for sale.
+
+In three and a half weeks, this solo project presents a wide range of capabilities for a reader, a content creator, and the admin user managing the systems.
+
+------- Strategy -------
+
+Currently, there is no literary playground for indie writers to post their web novels and literary manuscripts in most countries. There is a clear gap in market here. Think of it as Pivix for writers.
+
+------ Target Audience -----
+
+This platform will be appealing to indie writers, editors looking for manuscripts, as well as readers looking for fresh content.
+
+------- User Story (Agile) -------
+
+Shopper: 
+
+“As a shopper, I want to come to the website and immediately be show relevant products. On the same page, without navigating away, it would be convenient for me to search for products, filter products based on my needs, look at product details, and add items to cart. After which, I need to be able to update my cart, update quantities, and delete unwanted products. I should then be able to check out and make payment, receive notification on payment success, and look at the order status of my orders. Lastly, I do not only want to access this website on a computer browser. I should be able to browse this website easily on my mobile phone as well. Thus, I am able to smoothly buy a product I want and be informed during the process.
+
+Shop owner:
+
+“As a store owner, I need an admin login in order to prevent unauthorized users from creating, updating, and deleting products. I should have a super account that allows me to create, update, and delete products. I should also be able to look at customer orders and check if the customer has made actual payment. I want to be able to notify customers when the order is processed.
+
+Indie User:
+
+“I want to be able to list my works in a simple intuitive manner and allow my fans to search for me and my works easily.”
+
+------- Features -------
+
+For shopper:
+
+1.	Display ‘products’ and content on main page
+2.	Search engine to look for ‘products’ and content on main page – via Restful API
+3.	Filtering options to filter products on main page with custom controls
+4.	Registration and login (authentication and authorization through JWT payloads)
+5.	Profile page with Cart component to update and remove products from cart, as well as an order component to track orders
+6.	Validation of input from frontend forms to reduce customer error
+7.	Success notification on payment – future implementation of email notification of order
+8.	Back to other page shortcuts – seamless and intuitive transition from page to page and between functions
+
+For shop owner:
+
+1.	Display all products listed
+2.	Search engine for listed products
+3.	Filtering options to filter products based on user and product
+4.	Registration and login
+5.	CSRF protection on forms
+6.	User input in forms is validated
+7.	Notifications are flashed based on in-page events
+8.	Admin IP is tracked in sessions – future implementation of phone OTP for better security and 2FA.
+9.	Orders made by users saved in database, created once customers make payment, admin user able to search for orders
+10.	Update order status (paid, set to unpaid or incomplete), update orders, add orders, delete orders
+11.	Interface to manage users
+
+-------- Navigational Flow ------- (organization of frontend)
+
+ 
+
+-------- Conceptual Design --------
+
+ 
+
+--------- Database Structure ---------
+
+ 
+
+------- Design -------
+
+Frontend products: A scheme of classy white and off-black.
+User dashboard: A scheme of light colors is used for vibrant and welcoming feeling.
+Admin dashboard: muted and pale colors for ease on eyes for long usage.
+
+------- Technology stack used --------
+
+React functional programming hooks, React-dotenv, Stripe React, axios, Express, Db-migrate, bookshelf model with knex methods, MySQL/Postgres, Stripe, Cloudinary Image upload and sanitization, Caolan forms, sessions, JWT Authentication, regex validation.
+
+------- Testing -------
+Caught and resolved errors in development and deployment.
+Test case: Typing of <> characters and certain special characters used in scripting in frontend forms
+Expected: invalid characters in “targeted” form field
+Frontend validation with regex and server validation using models secures the front end and backend.
+
+------- Limitations and Future Enhancements -------
+1.	Users can save their favorite works from other users.
+2.	Email notification on payment for orders.
+3.	Admin user 2FA authentication with OTP.
+------- Deployment -------
+Hosting of frontend on Netlify, hosting of server and database on Render.
+
+------- Credits -------
+A special thanks to Paul for the comprehensive teaching, Alex for the workspace accommodations, and Yong Sheng for all the techniques on debugging used in the industry. This project could not have been completed without your support.
+
