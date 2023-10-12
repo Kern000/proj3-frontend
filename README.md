@@ -16,19 +16,16 @@ Page theme features a neat interface for shoppers and users to comfortably enjoy
 Landing Page
 
 <p></p> 
-<img src="./public/ERD.png" alt="Main_Page" width="250"/>
+<img src="./public/ERD.png" alt="Main_Page" width="600"/>
 <p></p>
 
 Search Bar
 <p></p> 
-<img src="./public/search bar.png" alt="Main_Page" width="250"/>
+<img src="./public/search bar.png" alt="Main_Page" width="600"/>
 <p></p>
  
 
 Found products
-<p></p> 
-<img src="./assets/main-page2.jpg" alt="Main_Page" width="250"/>
-<p></p>
 
  
 
