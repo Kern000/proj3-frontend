@@ -198,7 +198,7 @@ Admin dashboard: muted and pale colors for ease on eyes for long usage.
 React functional programming hooks, React-dotenv, Stripe React, axios, Express, Db-migrate, bookshelf model with knex methods, MySQL/Postgres, Cloudinary Image upload and sanitization, Caolan forms, handlebars server-side templating engine, sessions, csurf, JWT Authentication, regex validation.
 
 <h4> ------- Testing ------- </h4>
-Resolved errors in caught in development, deployment, and user testing.
+Resolved errors flagged in development, deployment, and user testing.
 Test case: Typing of <> characters and certain special characters used in scripting in frontend forms
 Expected: invalid characters in “targeted” form field
 <br />
