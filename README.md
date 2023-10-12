@@ -53,7 +53,7 @@ Page theme features a neat interface for shoppers and users to comfortably enjoy
 <img src="./public/dashboard products.png" alt="Main_Page" width="800"/>
 <p></p>
 
-<h5> Dashboard at empty cart </h5>
+<h5> Dashboard with cart items </h5>
 <p></p> 
 <img src="./public/update cart qty.png" alt="Main_Page" width="800"/>
 <p></p>
