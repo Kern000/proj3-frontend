@@ -149,7 +149,7 @@ This platform will be appealing to indie writers, editors looking for manuscript
 <h5> For shopper: </h5>
 
 1.	Display ‘products’ and content on main page
-2.	Search engine to look for ‘products’ and content on main page – via Restful API
+2.	Search engine to look for ‘products content’ on main page (Restful API)
 3.	Filtering options to filter products on main page with custom controls
 4.	Registration and login (authentication and authorization through JWT payloads)
 5.	Profile page with Cart component to update and remove products from cart, as well as an order component to track orders
