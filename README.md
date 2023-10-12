@@ -199,7 +199,7 @@ React functional programming hooks, React-dotenv, Stripe React, axios, Express, 
 
 <h4> ------- Testing ------- </h4>
 Resolved errors flagged in development, deployment, and user testing.
-<h5> Test case: </h5><
+<h5> Test case: </h5>
 Keying in "<>" characters and certain special characters used in scripting in frontend forms <br />
 Expected: invalid characters in “targeted” form field
 <br />
