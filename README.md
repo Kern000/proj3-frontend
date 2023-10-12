@@ -138,7 +138,7 @@ This platform will be appealing to indie writers, editors looking for manuscript
 
 <h5> Shop owner: </h5>
 
-“As a store owner, I need an admin login in order to prevent unauthorized users from creating, updating, and deleting products. I should have a super account that allows me to create, update, and delete products. I should also be able to look at customer orders and check if the customer has made actual payment. I want to be able to notify customers when the order is processed.
+“As a store owner, I need an admin login to manage users and products. I should have a super account that allows me to create, update, and delete products. I should also be able to look at customer orders and check if the customer has made actual payment. I want to be able to notify customers when the order is processed.
 
 <h5> Indie User: </h5>
 
