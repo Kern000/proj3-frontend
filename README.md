@@ -199,7 +199,9 @@ React functional programming hooks, React-dotenv, Stripe React, axios, Express, 
 
 <h4> ------- Testing ------- </h4>
 Resolved errors flagged in development, deployment, and user testing.
-Test case: Typing of <> characters and certain special characters used in scripting in frontend forms
+<br/>
+<h5> Test case: </h5><br/>
+Typing of <> characters and certain special characters used in scripting in frontend forms
 Expected: invalid characters in “targeted” form field
 <br />
 <p> Frontend validation with regex and server validation using models secures the front end and backend. </p>
