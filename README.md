@@ -2,132 +2,113 @@ Project Three Documentation – E-commerce Web Application
 
 This is Project Three of Trent Global’s Full Stack web application development course, conducted at week 20.
 
-------- Project Introduction -------
+<h4> Project Introduction </h4>
 
 The task is to create a user-friendly e-commerce website for a shop owner to list their products on the webpage. This project will take on the task of bringing e-commerce capabilities to the literary industry, providing an alternative to the region constrained Amazon KDP, allowing indie writers to list their literary works for sale – be it books, web novels, short stories, poems, or manuscripts.
 
 Frontend React Live link of this project can be found: <a href="https://singular-jalebi-389fbc.netlify.app/#/"> Here </a><br />
 Backend codes of this project can be found in this repo: <a href="https://github.com/Kern000/project-three-backend"> Here </a>
 
-------- Front End Design -------
+<h4> Front End Design </h4>
 
 Page theme features a neat interface for shoppers and users to comfortably enjoy navigation. The color theme is an off-black with white theme for a classy feeling which transits into brighter and exciting colors when navigating at the cart and orders.
 
-Landing Page
-
+<h5> Landing Page </h5>
 <p></p> 
-<img src="./public/ERD.png" alt="Main_Page" width="600"/>
+<img src="./public/ERD.png" alt="Main_Page" width="800"/>
 <p></p>
 
-Search Bar
+<h5> Search Bar </h5>
 <p></p> 
-<img src="./public/search bar.png" alt="Main_Page" width="600"/>
-<p></p>
- 
-
-Found products
-
- 
-
-Product Details
-<p></p> 
-<img src="./assets/main-page2.jpg" alt="Main_Page" width="250"/>
+<img src="./public/search bar.png" alt="Main_Page" width="800"/>
 <p></p>
  
-
-Add to cart
+<h5> Found products </h5>
 <p></p> 
-<img src="./assets/main-page2.jpg" alt="Main_Page" width="250"/>
-<p></p>
-
- 
-
-Login
-<p></p> 
-<img src="./assets/main-page2.jpg" alt="Main_Page" width="250"/>
-<p></p>
-
- 
-
-Registration
-<p></p> 
-<img src="./assets/main-page2.jpg" alt="Main_Page" width="250"/>
-<p></p>
-
- 
-
-Dashboard (if user has uploaded products)
-<p></p> 
-<img src="./assets/main-page2.jpg" alt="Main_Page" width="250"/>
-<p></p>
-
- 
-
-Dashboard at empty cart
-<p></p> 
-<img src="./assets/main-page2.jpg" alt="Main_Page" width="250"/>
-<p></p>
-
-Dashboard with cart items, allowing update quantity and delete 
-<p></p> 
-<img src="./assets/main-page2.jpg" alt="Main_Page" width="250"/>
-<p></p>
-
-Dashboard checkout
-<p></p> 
-<img src="./assets/main-page2.jpg" alt="Main_Page" width="250"/>
+<img src="./public/found products.png" alt="Main_Page" width="800"/>
 <p></p>
  
-External stripe so that our site do not hold credit card information
+<h5> Product Details </h5>
 <p></p> 
-<img src="./assets/main-page2.jpg" alt="Main_Page" width="250"/>
+<img src="./public/product details.png" alt="Main_Page" width="800"/>
 <p></p>
 
-Payment confirmation (Animation)
+<h5> Add to cart </h5>
 <p></p> 
-<img src="./assets/main-page2.jpg" alt="Main_Page" width="250"/>
+<img src="./public/add to cart 2.png" alt="Main_Page" width="800"/>
+<p></p>
+
+<h5> Login </h5>
+<p></p> 
+<img src="./public/login.png" alt="Main_Page" width="800"/>
+<p></p>
+
+<h5> Registration </h5>
+<p></p> 
+<img src="./public/register page.png" alt="Main_Page" width="800"/>
+<p></p>
+
+<h5> Dashboard (with user uploaded products) </h5>
+<p></p> 
+<img src="./public/dashboard products.png" alt="Main_Page" width="800"/>
+<p></p>
+
+<h5> Dashboard at empty cart </h5>
+<p></p> 
+<img src="./public/update cart qty.png" alt="Main_Page" width="800"/>
+<p></p>
+
+<h5> Dashboard checkout </h5>
+<p></p> 
+<img src="./public/checkout.png" alt="Main_Page" width="800"/>
+<p></p>
+
+<h5> External stripe so that our site do not hold credit card information </h5>
+<p></p> 
+<img src="./public/external stripe.png" alt="Main_Page" width="800"/>
+<p></p>
+
+<h5> Payment confirmation (With Animation) </h5>
+<p></p> 
+<img src="./public/fun with some animation.png" alt="Main_Page" width="800"/>
 <p></p>
  
-View only paid orders here
+<h5> View only paid orders here </h5>
 <p></p> 
-<img src="./assets/main-page2.jpg" alt="Main_Page" width="250"/>
+<img src="./public/view orders here.png" alt="Main_Page" width="800"/>
 <p></p>
 
-User can add product 
+<h5> User can add product or update their product </h5>
 <p></p> 
-<img src="./assets/main-page2.jpg" alt="Main_Page" width="250"/>
+<img src="./public/update product.png" alt="Main_Page" width="800"/>
 <p></p>
 
-Or update their uploaded products
+<h5> For Admin Users – Server side resources are generated </h5>
 <p></p> 
-<img src="./assets/main-page2.jpg" alt="Main_Page" width="250"/>
+<img src="./public/render server landing.png" alt="Main_Page" width="800"/>
 <p></p>
 
-For Admin Users – Server side resources are generated
+<h5> Admin Handle all users’ products – with full search capabilities and hiding of search box </h5>
 <p></p> 
-<img src="./assets/main-page2.jpg" alt="Main_Page" width="250"/>
+<img src="./public/product details.png" alt="Main_Page" width="800"/>
+<p></p>
+<img src="./public/render search.png" alt="Main_Page" width="800"/>
 <p></p>
 
-Handle all users’ products – with full search capabilities and hiding of search box
+<h5> Admin Handle users </h5>
 <p></p> 
-<img src="./assets/main-page2.jpg" alt="Main_Page" width="250"/>
-<p></p>
-
-Handle users
-<p></p> 
-<img src="./assets/main-page2.jpg" alt="Main_Page" width="250"/>
+<img src="./public/handle users as admin.png" alt="Main_Page" width="800"/>
 <p></p>
  
-Manage Carts
+<h5> Admin Manage Carts </h5>
 <p></p> 
-<img src="./assets/main-page2.jpg" alt="Main_Page" width="250"/>
+<img src="./public/manage cart.png" alt="Main_Page" width="800"/>
 <p></p>
 
-And lastly, manage Orders
+<h5> And lastly, Admin manage Orders </h5>
 <p></p> 
-<img src="./assets/main-page2.jpg" alt="Main_Page" width="250"/>
+<img src="./public/manage orders 2.png" alt="Main_Page" width="800"/>
 <p></p>
-
  
 ------- Value proposition -------
 
@@ -186,47 +167,44 @@ For shop owner:
 10.	Update order status (paid, set to unpaid or incomplete), update orders, add orders, delete orders
 11.	Interface to manage users
 
--------- Navigational Flow ------- (organization of frontend)
+<h4> -------- Navigational Flow ------- (frontend) </h4>
 
 <p></p> 
-<img src="./assets/main-page2.jpg" alt="Main_Page" width="250"/>
+<img src="./public/user navigation flow.png" alt="Main_Page" width="800"/>
 <p></p>
  
-
--------- Conceptual Design --------
+<h4> -------- Conceptual Design -------- </h4>
 <p></p> 
-<img src="./assets/main-page2.jpg" alt="Main_Page" width="250"/>
+<img src="./public/mockup.jpg" alt="Main_Page" width="800"/>
 <p></p>
 
- 
-
---------- Database Structure ---------
+<h4> --------- Database Structure --------- </h4>
 <p></p> 
-<img src="./assets/main-page2.jpg" alt="Main_Page" width="250"/>
+<img src="./public/ERD.png" alt="Main_Page" width="800"/>
 <p></p>
 
- 
-
-------- Design -------
+<h4> ------- Design ------- </h4>
 
 Frontend products: A scheme of classy white and off-black.
 User dashboard: A scheme of light colors is used for vibrant and welcoming feeling.
 Admin dashboard: muted and pale colors for ease on eyes for long usage.
 
-------- Technology stack used --------
+<h4> ------- Technology stack used -------- </h4>
 
 React functional programming hooks, React-dotenv, Stripe React, axios, Express, Db-migrate, bookshelf model with knex methods, MySQL/Postgres, Stripe, Cloudinary Image upload and sanitization, Caolan forms, sessions, JWT Authentication, regex validation.
 
-------- Testing -------
-Caught and resolved errors in development and deployment.
+<h4> ------- Testing ------- </h4>
+Resolved errors in caught in development, deployment, and user testing.
 Test case: Typing of <> characters and certain special characters used in scripting in frontend forms
 Expected: invalid characters in “targeted” form field
-Frontend validation with regex and server validation using models secures the front end and backend.
+<br />
+<p> Frontend validation with regex and server validation using models secures the front end and backend. </p>
 
 ------- Limitations and Future Enhancements -------
 1.	Users can save their favorite works from other users.
 2.	Email notification on payment for orders.
 3.	Admin user 2FA authentication with OTP.
+
 ------- Deployment -------
 Hosting of frontend on Netlify, hosting of server and database on Render.
 
