@@ -195,7 +195,7 @@ Admin dashboard: muted and pale colors for ease on eyes for long usage.
 
 <h4> ------- Technology stack used -------- </h4>
 
-React functional programming hooks, React-dotenv, Stripe React, axios, Express, Db-migrate, bookshelf model with knex methods, MySQL/Postgres, Stripe, Cloudinary Image upload and sanitization, Caolan forms, sessions, JWT Authentication, regex validation.
+React functional programming hooks, React-dotenv, Stripe React, axios, Express, Db-migrate, bookshelf model with knex methods, MySQL/Postgres, Cloudinary Image upload and sanitization, Caolan forms, sessions, JWT Authentication, regex validation.
 
 <h4> ------- Testing ------- </h4>
 Resolved errors in caught in development, deployment, and user testing.
