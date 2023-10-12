@@ -95,8 +95,6 @@ Page theme features a neat interface for shoppers and users to comfortably enjoy
 <p></p>
 
 <h5> Admin Handle all users’ products – with full search capabilities and hiding of search box </h5>
-<p></p> 
-<img src="./public/product details.png" alt="Main_Page" width="800"/>
 <p></p>
 <img src="./public/render search.png" alt="Main_Page" width="800"/>
 <p></p>
