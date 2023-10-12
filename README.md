@@ -6,8 +6,8 @@ This is Project Three of Trent Global’s Full Stack web application development
 
 The task is to create a user-friendly e-commerce website for a shop owner to list their products on the webpage. This project will take on the task of bringing e-commerce capabilities to the literary industry, providing an alternative to the region constrained Amazon KDP, allowing indie writers to list their literary works for sale – be it books, web novels, short stories, poems, or manuscripts.
 
-Live link can be found: <a href="https://singular-jalebi-389fbc.netlify.app/#/"> Here </a>
-Backend admin can be found: <a href="https://writers-base-backend.onrender.com/admin/login"> Here </a>
+Frontend React Live link of this project can be found: <a href="https://singular-jalebi-389fbc.netlify.app/#/"> Here </a><br />
+Backend codes of this project can be found in this repo: <a href="https://github.com/Kern000/project-three-backend"> Here </a>
 
 ------- Front End Design -------
 
@@ -15,82 +15,121 @@ Page theme features a neat interface for shoppers and users to comfortably enjoy
 
 Landing Page
 
- 
+<p></p> 
+<img src="./public/ERD.png" alt="Main_Page" width="250"/>
+<p></p>
 
 Search Bar
+<p></p> 
+<img src="./public/search bar.png" alt="Main_Page" width="250"/>
+<p></p>
  
 
 Found products
+<p></p> 
+<img src="./assets/main-page2.jpg" alt="Main_Page" width="250"/>
+<p></p>
 
  
 
 Product Details
+<p></p> 
+<img src="./assets/main-page2.jpg" alt="Main_Page" width="250"/>
+<p></p>
  
 
 Add to cart
+<p></p> 
+<img src="./assets/main-page2.jpg" alt="Main_Page" width="250"/>
+<p></p>
 
  
 
 Login
+<p></p> 
+<img src="./assets/main-page2.jpg" alt="Main_Page" width="250"/>
+<p></p>
 
  
 
 Registration
+<p></p> 
+<img src="./assets/main-page2.jpg" alt="Main_Page" width="250"/>
+<p></p>
 
  
 
 Dashboard (if user has uploaded products)
+<p></p> 
+<img src="./assets/main-page2.jpg" alt="Main_Page" width="250"/>
+<p></p>
 
  
 
 Dashboard at empty cart
-
- 
-
+<p></p> 
+<img src="./assets/main-page2.jpg" alt="Main_Page" width="250"/>
+<p></p>
 
 Dashboard with cart items, allowing update quantity and delete 
+<p></p> 
+<img src="./assets/main-page2.jpg" alt="Main_Page" width="250"/>
+<p></p>
 
 Dashboard checkout
+<p></p> 
+<img src="./assets/main-page2.jpg" alt="Main_Page" width="250"/>
+<p></p>
  
-
 External stripe so that our site do not hold credit card information
-
- 
-
+<p></p> 
+<img src="./assets/main-page2.jpg" alt="Main_Page" width="250"/>
+<p></p>
 
 Payment confirmation (Animation)
+<p></p> 
+<img src="./assets/main-page2.jpg" alt="Main_Page" width="250"/>
+<p></p>
  
-
 View only paid orders here
- 
+<p></p> 
+<img src="./assets/main-page2.jpg" alt="Main_Page" width="250"/>
+<p></p>
 
 User can add product 
-
- 
+<p></p> 
+<img src="./assets/main-page2.jpg" alt="Main_Page" width="250"/>
+<p></p>
 
 Or update their uploaded products
- 
-
- 
+<p></p> 
+<img src="./assets/main-page2.jpg" alt="Main_Page" width="250"/>
+<p></p>
 
 For Admin Users – Server side resources are generated
+<p></p> 
+<img src="./assets/main-page2.jpg" alt="Main_Page" width="250"/>
+<p></p>
 
 Handle all users’ products – with full search capabilities and hiding of search box
-
- 
-
- 
+<p></p> 
+<img src="./assets/main-page2.jpg" alt="Main_Page" width="250"/>
+<p></p>
 
 Handle users
-
+<p></p> 
+<img src="./assets/main-page2.jpg" alt="Main_Page" width="250"/>
+<p></p>
  
 Manage Carts
-
- 
+<p></p> 
+<img src="./assets/main-page2.jpg" alt="Main_Page" width="250"/>
+<p></p>
 
 And lastly, manage Orders
-
- 
+<p></p> 
+<img src="./assets/main-page2.jpg" alt="Main_Page" width="250"/>
+<p></p>
 
  
 ------- Value proposition -------
@@ -152,13 +191,22 @@ For shop owner:
 
 -------- Navigational Flow ------- (organization of frontend)
 
+<p></p> 
+<img src="./assets/main-page2.jpg" alt="Main_Page" width="250"/>
+<p></p>
  
 
 -------- Conceptual Design --------
+<p></p> 
+<img src="./assets/main-page2.jpg" alt="Main_Page" width="250"/>
+<p></p>
 
  
 
 --------- Database Structure ---------
+<p></p> 
+<img src="./assets/main-page2.jpg" alt="Main_Page" width="250"/>
+<p></p>
 
  
 
@@ -186,5 +234,5 @@ Frontend validation with regex and server validation using models secures the fr
 Hosting of frontend on Netlify, hosting of server and database on Render.
 
 ------- Credits -------
-A special thanks to Paul for the comprehensive teaching, Alex for the workspace accommodations, and Yong Sheng for all the techniques on debugging used in the industry. This project could not have been completed without your support.
+A special thanks to Paul for his comprehensive and up-to-date teaching, Alex for the workspace accommodations, and Yong Sheng for all the techniques on debugging that are used in the industry. This project could not have been completed without your support.
 
