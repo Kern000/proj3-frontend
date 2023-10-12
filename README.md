@@ -80,6 +80,12 @@ Page theme features a neat interface for shoppers and users to comfortably enjoy
 
 <h5> User can add product or update their product </h5>
 <p></p> 
+<img src="./public/user add product.png" alt="Main_Page" width="800"/>
+<p></p>
+<p></p> 
+<img src="./public/user add product 2.png" alt="Main_Page" width="800"/>
+<p></p>
+<p></p> 
 <img src="./public/update product.png" alt="Main_Page" width="800"/>
 <p></p>
 
