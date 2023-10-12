@@ -11,7 +11,7 @@ Backend codes of this project can be found in this repo: <a href="https://github
 
 <h4> Front End Design </h4>
 
-Page theme features a neat interface for shoppers and users to comfortably enjoy navigation. The color theme is an off-black with white theme for a classy feeling which transits into brighter and exciting colors when navigating in the shopping cart and orders.
+Page theme features a neat interface for shoppers and users to comfortably enjoy navigation. The color theme is an off-black with white theme for a classy feeling which transits into brighter and exciting colors when navigating within the shopping cart and orders.
 
 <h5> Landing Page </h5>
 <p></p> 
