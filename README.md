@@ -1,4 +1,4 @@
-Project Three Documentation – E-commerce Web Application
+<h2> Project Three Documentation – E-commerce Web Application </h2>
 
 This is Project Three of Trent Global’s Full Stack web application development course, conducted at week 20.
 
@@ -110,7 +110,7 @@ Page theme features a neat interface for shoppers and users to comfortably enjoy
 <img src="./public/manage orders 2.png" alt="Main_Page" width="800"/>
 <p></p>
  
-------- Value proposition -------
+<h4> ------- Value proposition ------- </h4>
 
 This website provides a lightweight alternative to Amazon KDP for listing literary works in less rigid formats, unconstrained by kindle formats. Users may also use this page to redirect traffic to their Amazon KDP page for those who find the low barrier printing capabilities of Amazon appealing.
 
@@ -118,31 +118,31 @@ The indie focus of this page would provide better visibility for indie writers c
 
 In three and a half weeks, this solo project presents a wide range of capabilities for a reader, a content creator, and the admin user managing the systems.
 
-------- Strategy -------
+<h4> ------- Strategy ------- </h4>
 
 Currently, there is no literary playground for indie writers to post their web novels and literary manuscripts in most countries. There is a clear gap in market here. Think of it as Pivix for writers.
 
------- Target Audience -----
+<h4> ------ Target Audience ----- </h4>
 
 This platform will be appealing to indie writers, editors looking for manuscripts, as well as readers looking for fresh content.
 
-------- User Story (Agile) -------
+<h4> ------- User Story (Agile) ------- </h4>
 
-Shopper: 
+<h5> Shopper: </h5>
 
 “As a shopper, I want to come to the website and immediately be show relevant products. On the same page, without navigating away, it would be convenient for me to search for products, filter products based on my needs, look at product details, and add items to cart. After which, I need to be able to update my cart, update quantities, and delete unwanted products. I should then be able to check out and make payment, receive notification on payment success, and look at the order status of my orders. Lastly, I do not only want to access this website on a computer browser. I should be able to browse this website easily on my mobile phone as well. Thus, I am able to smoothly buy a product I want and be informed during the process.
 
-Shop owner:
+<h5> Shop owner: </h5>
 
 “As a store owner, I need an admin login in order to prevent unauthorized users from creating, updating, and deleting products. I should have a super account that allows me to create, update, and delete products. I should also be able to look at customer orders and check if the customer has made actual payment. I want to be able to notify customers when the order is processed.
 
-Indie User:
+<h5> Indie User: </h5>
 
 “I want to be able to list my works in a simple intuitive manner and allow my fans to search for me and my works easily.”
 
-------- Features -------
+<h4> ------- Features ------- </h4>
 
-For shopper:
+<h5> For shopper: </h5>
 
 1.	Display ‘products’ and content on main page
 2.	Search engine to look for ‘products’ and content on main page – via Restful API
@@ -153,7 +153,7 @@ For shopper:
 7.	Success notification on payment – future implementation of email notification of order
 8.	Back to other page shortcuts – seamless and intuitive transition from page to page and between functions
 
-For shop owner:
+<h5> For shop owner: </h5>
 
 1.	Display all products listed
 2.	Search engine for listed products
@@ -200,14 +200,13 @@ Expected: invalid characters in “targeted” form field
 <br />
 <p> Frontend validation with regex and server validation using models secures the front end and backend. </p>
 
-------- Limitations and Future Enhancements -------
+<h4> ------- Limitations and Future Enhancements ------- </h4>
 1.	Users can save their favorite works from other users.
 2.	Email notification on payment for orders.
 3.	Admin user 2FA authentication with OTP.
 
-------- Deployment -------
+<h4> ------- Deployment ------- </h4>
 Hosting of frontend on Netlify, hosting of server and database on Render.
 
-------- Credits -------
+<h4> ------- Credits ------- </h4>
 A special thanks to Paul for his comprehensive and up-to-date teaching, Alex for the workspace accommodations, and Yong Sheng for all the techniques on debugging that are used in the industry. This project could not have been completed without your support.
-
