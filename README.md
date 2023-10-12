@@ -205,10 +205,10 @@ Expected: invalid characters in “targeted” form field
 <br />
 <p> Frontend validation with regex and server validation using models secures the front end and backend. </p>
 
-<h4> ------- Limitations and Future Enhancements ------- </h4>
-1.	Users can save their favorite works from other users.
-2.	Email notification on payment for orders.
-3.	Admin user 2FA authentication with OTP.
+<h4> ------- Future Enhancements ------- </h4>
+1.	Users being able to save their favorite works from other users. <br />
+2.	Email notification on payment for orders. <br />
+3.	Admin user 2FA authentication with OTP. <br />
 
 <h4> ------- Deployment ------- </h4>
 Hosting of frontend on Netlify, hosting of server and database on Render.
