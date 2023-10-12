@@ -167,7 +167,7 @@ This platform will be appealing to indie writers, editors looking for manuscript
 6.	User input for forms is validated
 7.	Notifications are flashed based on in-page events
 8.	Admin IP is tracked in sessions – future implementation of phone OTP for better security and 2FA.
-9.	Orders made by users saved in database and created in frontend once customers make payment, admin user able to search for orders
+9.	Orders made by users are saved in database and created in frontend once customers make payment, admin user is able to search orders
 10.	Update order status (paid, set to unpaid or incomplete), update orders, add orders, delete orders
 11.	Interface to manage users
 
