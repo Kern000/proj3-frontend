@@ -155,7 +155,7 @@ This platform will be appealing to indie writers, editors looking for manuscript
 5.	Profile page with Cart component to update and remove products from cart, as well as an order component to track orders
 6.	Validation of input from frontend forms to reduce customer error
 7.	Success notification on payment – future implementation of email notification of order
-8.	Back to other page shortcuts – seamless and intuitive transition from page to page and between functions
+8.	"Back to other page" shortcuts – seamless and intuitive transition from page to page and between functions
 
 <h5> For shop owner: </h5>
 
