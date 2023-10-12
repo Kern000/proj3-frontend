@@ -15,7 +15,7 @@ Page theme features a neat interface for shoppers and users to comfortably enjoy
 
 <h5> Landing Page </h5>
 <p></p> 
-<img src="./public/ERD.png" alt="Main_Page" width="800"/>
+<img src="./public/landing page.png" alt="Main_Page" width="800"/>
 <p></p>
 
 <h5> Search Bar </h5>
